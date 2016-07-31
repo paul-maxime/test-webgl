@@ -20,6 +20,11 @@ var Sprite = function (gl) {
 	this.origin[1] = 0;
 };
 
+Sprite.prototype.setSize = function (width, height) {
+	this.width = width;
+	this.height = height;
+};
+
 Sprite.prototype.setPosition = function (x, y) {
 	this.position[0] = x;
 	this.position[1] = y;

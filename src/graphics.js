@@ -14,15 +14,16 @@ var Graphics = function () {
 	this.viewMatrix = mat4.create();
 	this.boundTexture = null;
 	this.whitePixelTexture = null;
-	this.defaultTextureCoordinatesBuffer = null;
+	this.testBuffer = null;
+	this.testBuffer2 = null;
 };
 
 Graphics.prototype.initialize = function (canvas) {
 	if (this.initializeGl(canvas) && this.initializeShaders()) {
 		this.whitePixelTexture = new Texture(this.gl);
 		this.whitePixelTexture.loadWhitePixel();
-		this.defaultTextureCoordinatesBuffer = new Buffer(this.gl);
-		this.defaultTextureCoordinatesBuffer.setDataFromTextureCoordinates(0.0, 0.0, 1.0, 1.0);
+		this.testBuffer = new Buffer(this.gl);
+		this.testBuffer2 = new Buffer(this.gl);
 		this.gl.enable(this.gl.BLEND);
 		this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
 		this.setViewport(0, canvas.width, 0, canvas.height);
@@ -43,9 +44,9 @@ Graphics.prototype.setViewport = function (left, right, bottom, top) {
 
 Graphics.prototype.draw = function (sprite) {
 	this.bindTexture(sprite.texture);
-	this.gl.bindBuffer(this.gl.ARRAY_BUFFER, sprite.verticesBuffer);
+	this.testBuffer.setDataFromSpriteVertices(sprite.width, sprite.height);
 	this.gl.vertexAttribPointer(this.vertexPositionAttribute, 3, this.gl.FLOAT, false, 0, 0);
-	this.gl.bindBuffer(this.gl.ARRAY_BUFFER, sprite.textureCoordinatesBuffer);
+	this.testBuffer2.setDataFromTextureCoordinates(0.0, 0.0, 1.0, 1.0);
 	this.gl.vertexAttribPointer(this.textureCoordinatesAttribute, 2, this.gl.FLOAT, false, 0, 0);
 	this.updateModelMatrix(sprite.matrix);
 	this.gl.drawArrays(this.gl.TRIANGLE_STRIP, 0, 4);

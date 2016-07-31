@@ -15,7 +15,7 @@ Buffer.prototype.setData = function (data) {
 };
 
 Buffer.prototype.setDataFromSpriteVertices = function (width, height) {
-	setData([
+	this.setData([
 		width, height, 0.0,
 		0.0, height, 0.0,
 		width, 0.0, 0.0,
@@ -24,7 +24,7 @@ Buffer.prototype.setDataFromSpriteVertices = function (width, height) {
 };
 
 Buffer.prototype.setDataFromTextureCoordinates = function (startX, startY, endX, endY) {
-	setData([
+	this.setData([
 		endX, endY,
 		startX, endY,
 		endX, startY,
