@@ -12,12 +12,14 @@ var Sprite = function (gl) {
 	this.rotation = quat.create();
 	this.scale = vec3.create();
 	this.origin = vec3.create();
+	this.color = vec4.create();
 
 	this.scale[0] = 1.0;
 	this.scale[1] = 1.0;
 	this.scale[2] = 1.0;
 	this.origin[0] = 0;
 	this.origin[1] = 0;
+	this.setColor(1.0, 1.0, 1.0, 1.0);
 };
 
 Sprite.prototype.setSize = function (width, height) {
@@ -57,6 +59,13 @@ Sprite.prototype.setOrigin = function (x, y) {
 	this.origin[0] = x;
 	this.origin[1] = y;
 	this.updateMatrix();
+}
+
+Sprite.prototype.setColor = function (r, g, b, a) {
+	this.color[0] = r;
+	this.color[1] = g;
+	this.color[2] = b;
+	this.color[3] = a;
 }
 
 Sprite.prototype.updateMatrix = function () {

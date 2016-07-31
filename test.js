@@ -1,7 +1,7 @@
 'use strict';
 
 var graphics;
-var sprite, sprite2;
+var sprite, sprite2, sprite3;
 var texture;
 var input;
 var clock;
@@ -15,6 +15,10 @@ function start() {
 		texture = graphics.createTexture('blob.png');
 		sprite = graphics.createSprite(32, 32, texture);
 		sprite2 = graphics.createSprite(32, 32, texture);
+		sprite3 = graphics.createSprite(32, 32, texture);
+		sprite.setColor(1.0, 0.0, 0.0, 1.0);
+		sprite2.setColor(0.0, 1.0, 0.0, 1.0);
+		sprite3.setColor(0.2, 0.2, 1.0, 1.0);
 		requestAnimationFrame(update);
 	}
 }
@@ -27,6 +31,8 @@ function update() {
 		sprite.rotate(180 * deltaTime);
 		sprite2.move(105 * deltaTime, 55 * deltaTime);
 		sprite2.rotate(185 * deltaTime);
+		sprite3.move(110 * deltaTime, 60 * deltaTime);
+		sprite3.rotate(190 * deltaTime);
 	}
 	draw();
 }
@@ -35,7 +41,7 @@ function draw() {
 	graphics.clear();
 	graphics.draw(sprite);
 	graphics.draw(sprite2);
-	
+	graphics.draw(sprite3);
 }
 
 $(function () {

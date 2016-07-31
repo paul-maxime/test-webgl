@@ -50,6 +50,7 @@ Graphics.prototype.draw = function (sprite) {
 	this.textureCoordinatesBuffer.bind();
 	this.gl.vertexAttribPointer(this.textureCoordinatesAttribute, 2, this.gl.FLOAT, false, 0, 0);
 	this.updateModelMatrix(sprite.matrix);
+	this.gl.uniform4fv(this.spriteColorUniform, sprite.color);
 	this.gl.drawArrays(this.gl.TRIANGLE_STRIP, 0, 4);
 };
 
@@ -68,7 +69,11 @@ Graphics.prototype.createTexture = function (src) {
 Graphics.prototype.createSprite = function (width, height, texture) {
 	var sprite = new Sprite(this.gl);
 	sprite.setSize(width, height);
-	sprite.texture = texture;
+	if (texture !== undefined && texture !== null) {
+		sprite.texture = texture;
+	} else {
+		sprite.texture = this.whitePixelTexture;
+	}
 	sprite.setOrigin(width / 2, height / 2);
 	return sprite;
 };
@@ -105,8 +110,9 @@ Graphics.prototype.initializeShaders = function () {
 	var fragmentShader = this.createShader(this.gl.FRAGMENT_SHADER,
 		'varying highp vec2 v_textureCoordinates;' +
 		'uniform sampler2D u_sampler;' +
+		'uniform lowp vec4 u_spriteColor;' +
 		'void main(void) {' +
-		'	gl_FragColor = texture2D(u_sampler, v_textureCoordinates) * vec4(1.0,1.0,1.0,0.1);' +
+		'	gl_FragColor = texture2D(u_sampler, v_textureCoordinates) * u_spriteColor;' +
 		'}'
 	);
 	
@@ -131,6 +137,7 @@ Graphics.prototype.initializeShaders = function () {
 	this.projectionMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, 'u_projectionMatrix');
 	this.viewMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, 'u_viewMatrix');
 	this.modelMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, 'u_modelMatrix');
+	this.spriteColorUniform = this.gl.getUniformLocation(this.shaderProgram, 'u_spriteColor');
 		
 	return true;
 };
