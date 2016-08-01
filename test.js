@@ -12,7 +12,7 @@ function start() {
 	if (graphics.initialize(canvas)) {
 		input = new Input(document, canvas);
 		clock = new Clock();
-		texture = graphics.createTexture('blob.png');
+		texture = graphics.createTexture('img/blob.png');
 		sprite = graphics.createSprite(32, 32, texture);
 		sprite2 = graphics.createSprite(16, 32, texture);
 		sprite3 = graphics.createSprite(32, 16, texture);
