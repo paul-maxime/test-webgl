@@ -1,38 +1,19 @@
 'use strict';
 
-var Sprite = function (gl) {
-	this.gl = gl;
-	this.width = 0;
-	this.height = 0;
-	this.texture = null;
-	this.textureStartX = 0;
-	this.textureStartY = 0;
-	this.textureEndX = 1.0;
-	this.textureEndY = 1.0;
-	this.matrix = mat4.create();
-	this.position = vec3.create();
-	this.rotation = quat.create();
-	this.scale = vec3.create();
-	this.origin = vec3.create();
-	this.color = vec4.create();
-
-	this.scale[0] = 1.0;
-	this.scale[1] = 1.0;
-	this.scale[2] = 1.0;
-	this.origin[0] = 0;
-	this.origin[1] = 0;
-	this.setColor(1.0, 1.0, 1.0, 1.0);
-};
-
-Sprite.prototype.setSize = function (width, height) {
-	this.width = width;
-	this.height = height;
-};
-
-Sprite.prototype.setPosition = function (x, y) {
-	this.position[0] = x;
-	this.position[1] = y;
-	this.updateMatrix();
+class Sprite extends Transformable {
+	constructor(gl) {
+		super();
+		this.gl = gl;
+		this.width = 0;
+		this.height = 0;
+		this.texture = null;
+		this.textureStartX = 0;
+		this.textureStartY = 0;
+		this.textureEndX = 1.0;
+		this.textureEndY = 1.0;
+		this.color = vec4.create();
+		this.setColor(1.0, 1.0, 1.0, 1.0);
+	}
 };
 
 Sprite.prototype.setTextureCoordinates = function (startX, startY, endX, endY) {
@@ -42,41 +23,9 @@ Sprite.prototype.setTextureCoordinates = function (startX, startY, endX, endY) {
 	this.textureEndY = endY;
 };
 
-Sprite.prototype.move = function (x, y) {
-	this.position[0] += x;
-	this.position[1] += y;
-	this.updateMatrix();
-};
-
-Sprite.prototype.setRotation = function (deg) {
-	quat.identity(this.rotation);
-	this.rotate(deg);
-};
-
-Sprite.prototype.rotate = function (deg) {
-	quat.rotateZ(this.rotation, this.rotation, deg * Math.PI / 180.0);
-	this.updateMatrix();
-};
-
-Sprite.prototype.setScale = function (x, y) {
-	this.scale[0] = x;
-	this.scale[1] = y;
-	this.updateMatrix();
-}
-
-Sprite.prototype.setOrigin = function (x, y) {
-	this.origin[0] = x;
-	this.origin[1] = y;
-	this.updateMatrix();
-}
-
 Sprite.prototype.setColor = function (r, g, b, a) {
 	this.color[0] = r;
 	this.color[1] = g;
 	this.color[2] = b;
 	this.color[3] = a;
 }
-
-Sprite.prototype.updateMatrix = function () {
-	mat4.fromRotationTranslationScaleOrigin(this.matrix, this.rotation, this.position, this.scale, this.origin);
-};
