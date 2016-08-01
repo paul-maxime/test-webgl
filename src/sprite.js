@@ -1,9 +1,8 @@
 'use strict';
 
 class Sprite extends Transformable {
-	constructor(gl) {
+	constructor() {
 		super();
-		this.gl = gl;
 		this.width = 0;
 		this.height = 0;
 		this.texture = null;
@@ -14,18 +13,16 @@ class Sprite extends Transformable {
 		this.color = vec4.create();
 		this.setColor(1.0, 1.0, 1.0, 1.0);
 	}
+	setTextureCoordinates(startX, startY, endX, endY) {
+		this.textureStartX = startX;
+		this.textureStartY = startY;
+		this.textureEndX = endX;
+		this.textureEndY = endY;
+	}
+	setColor(r, g, b, a) {
+		this.color[0] = r;
+		this.color[1] = g;
+		this.color[2] = b;
+		this.color[3] = a;
+	}
 };
-
-Sprite.prototype.setTextureCoordinates = function (startX, startY, endX, endY) {
-	this.textureStartX = startX;
-	this.textureStartY = startY;
-	this.textureEndX = endX;
-	this.textureEndY = endY;
-};
-
-Sprite.prototype.setColor = function (r, g, b, a) {
-	this.color[0] = r;
-	this.color[1] = g;
-	this.color[2] = b;
-	this.color[3] = a;
-}
