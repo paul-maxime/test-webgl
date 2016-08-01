@@ -24,7 +24,6 @@ Graphics.prototype.initialize = function (canvas) {
 		this.whitePixelTexture.loadWhitePixel();
 		this.vertexPositionBuffer = new Buffer(this.gl);
 		this.textureCoordinatesBuffer = new Buffer(this.gl);
-		this.textureCoordinatesBuffer.setDataFromTextureCoordinates(0.0, 0.0, 1.0, 1.0);
 		this.gl.enable(this.gl.BLEND);
 		this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
 		this.setViewport(0, canvas.width, 0, canvas.height);
@@ -47,7 +46,7 @@ Graphics.prototype.draw = function (sprite) {
 	this.bindTexture(sprite.texture);
 	this.vertexPositionBuffer.setDataFromSpriteVertices(sprite.width, sprite.height);
 	this.gl.vertexAttribPointer(this.vertexPositionAttribute, 3, this.gl.FLOAT, false, 0, 0);
-	this.textureCoordinatesBuffer.bind();
+	this.textureCoordinatesBuffer.setDataFromTextureCoordinates(sprite.textureStartX, sprite.textureStartY, sprite.textureEndX, sprite.textureEndY);
 	this.gl.vertexAttribPointer(this.textureCoordinatesAttribute, 2, this.gl.FLOAT, false, 0, 0);
 	this.updateModelMatrix(sprite.matrix);
 	this.gl.uniform4fv(this.spriteColorUniform, sprite.color);

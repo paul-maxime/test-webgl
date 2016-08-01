@@ -5,6 +5,10 @@ var Sprite = function (gl) {
 	this.width = 0;
 	this.height = 0;
 	this.texture = null;
+	this.textureStartX = 0;
+	this.textureStartY = 0;
+	this.textureEndX = 1.0;
+	this.textureEndY = 1.0;
 	this.matrix = mat4.create();
 	this.position = vec3.create();
 	this.rotation = quat.create();
@@ -29,6 +33,13 @@ Sprite.prototype.setPosition = function (x, y) {
 	this.position[0] = x;
 	this.position[1] = y;
 	this.updateMatrix();
+};
+
+Sprite.prototype.setTextureCoordinates = function (startX, startY, endX, endY) {
+	this.textureStartX = startX;
+	this.textureStartY = startY;
+	this.textureEndX = endX;
+	this.textureEndY = endY;
 };
 
 Sprite.prototype.move = function (x, y) {

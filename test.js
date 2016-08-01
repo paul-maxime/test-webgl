@@ -14,11 +14,13 @@ function start() {
 		clock = new Clock();
 		texture = graphics.createTexture('blob.png');
 		sprite = graphics.createSprite(32, 32, texture);
-		sprite2 = graphics.createSprite(32, 32, texture);
-		sprite3 = graphics.createSprite(32, 32, texture);
+		sprite2 = graphics.createSprite(16, 32, texture);
+		sprite3 = graphics.createSprite(32, 16, texture);
 		sprite.setColor(1.0, 0.0, 0.0, 1.0);
 		sprite2.setColor(0.0, 1.0, 0.0, 1.0);
 		sprite3.setColor(0.2, 0.2, 1.0, 1.0);
+		sprite2.setTextureCoordinates(0.5, 0, 1, 1);
+		sprite3.setTextureCoordinates(0, 0, 1, 0.5);
 		requestAnimationFrame(update);
 	}
 }
