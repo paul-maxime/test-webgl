@@ -3,36 +3,29 @@
 class Input {
 	constructor(element, canvas) {
 		this.pressedKeys = {};
-
-		var self = this;
-		element.addEventListener('keydown', function (e) {
-			e = e || window.event;
-			self.setKeyPressed(e.keyCode);
+		element.addEventListener('keydown', (e) => {
+			this.onKeyPressed(e.keyCode);
 		});
-
-		element.addEventListener('keyup', function (e) {
-			e = e || window.event;
-			self.setKeyReleased(e.keyCode);
+		element.addEventListener('keyup', (e) => {
+			this.onKeyReleased(e.keyCode);
 		});
-
-		element.addEventListener('blur', function (e) {
-			self.setFocusLost();
+		element.addEventListener('blur', (e) => {
+			this.onFocusLost();
 		});
-		
-		canvas.oncontextmenu = function (e) {
+		canvas.oncontextmenu = (e) => {
 			e.preventDefault();
 		};
 	}
 	isKeyPressed(key) {
 		return this.pressedKeys[key] === true;
 	}
-	setKeyPressed(key) {
+	onKeyPressed(key) {
 		this.pressedKeys[key] = true;
 	}
-	setKeyReleased(key) {
+	onKeyReleased(key) {
 		delete this.pressedKeys[key];	
 	}
-	setFocusLost(key) {
+	onFocusLost() {
 		this.pressedKeys = {};
 	}
 }
