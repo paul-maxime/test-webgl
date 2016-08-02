@@ -25,4 +25,4 @@ class Sprite extends Transformable {
 		this.color[2] = b;
 		this.color[3] = a;
 	}
-};
+}
