@@ -17,7 +17,6 @@ class Graphics {
 		this.viewProjectionMatrixUniform = null;
 		this.viewProjectionMatrix = mat4.create();
 
-		this.boundTexture = null;
 		this.whitePixelTexture = null;
 	}
 	initialize(canvas) {
@@ -139,8 +138,7 @@ class Graphics {
 		if (texture === null) {
 			texture = this.whitePixelTexture;
 		}
-		if (this.boundTexture !== texture && texture.initialized) {
-			this.boundTexture = texture;
+		if (texture.initialized) {
 			texture.bind();
 		}
 	}

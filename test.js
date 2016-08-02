@@ -48,7 +48,7 @@ function update() {
 		sprite3.move(110 * deltaTime, 60 * deltaTime);
 		sprite3.rotate(190 * deltaTime);
 	}
-	//graphics.camera.move(30 * deltaTime, 10 * deltaTime);
+	graphics.camera.move(30 * deltaTime, 10 * deltaTime);
 	draw();
 }
 

@@ -102,9 +102,12 @@ class SpriteBatch {
 		graphics.bindTexture(this.texture);
 		
 		graphics.vertexPositionBuffer.setFloat32Array(this.vertexArray);
-		this.gl.vertexAttribPointer(graphics.vertexPositionAttribute, 3, this.gl.FLOAT, false, 0, this.positionOffset * 4);
-		this.gl.vertexAttribPointer(graphics.vertexColorAttribute, 4, this.gl.FLOAT, false, 0, this.colorOffset * 4);
-		this.gl.vertexAttribPointer(graphics.textureCoordinatesAttribute, 2, this.gl.FLOAT, false, 0, this.textureOffset * 4);
+		if (graphics.currentBatch !== this) {
+			graphics.currentBatch = this;
+			this.gl.vertexAttribPointer(graphics.vertexPositionAttribute, 3, this.gl.FLOAT, false, 0, this.positionOffset * 4);
+			this.gl.vertexAttribPointer(graphics.vertexColorAttribute, 4, this.gl.FLOAT, false, 0, this.colorOffset * 4);
+			this.gl.vertexAttribPointer(graphics.textureCoordinatesAttribute, 2, this.gl.FLOAT, false, 0, this.textureOffset * 4);
+		}
 		
 		this.gl.uniformMatrix4fv(graphics.viewProjectionMatrixUniform, false, graphics.camera.viewProjectionMatrix);
 		

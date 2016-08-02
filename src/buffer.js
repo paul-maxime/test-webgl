@@ -6,7 +6,10 @@ class Buffer {
 		this.buffer = this.gl.createBuffer();
 	}
 	bind() {
-		this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.buffer);	
+		if (this.gl.boundBuffer !== this) {
+			this.gl.boundBuffer = this;
+			this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.buffer);	
+		}
 	}
 	setFloat32Array(data) {
 		this.bind();

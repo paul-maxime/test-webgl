@@ -9,7 +9,10 @@ class Texture {
 		this.height = 0;
 	}
 	bind() {
-		this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture);
+		if (this.gl.boundTexture !== this) {
+			this.gl.boundTexture = this;
+			this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture);
+		}
 	}
 	loadWhitePixel() {
 		this.bind();
