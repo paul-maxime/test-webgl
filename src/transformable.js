@@ -2,7 +2,7 @@
 
 class Transformable {
 	constructor() {
-		this.matrix = mat4.create();
+		this.transformationMatrix = mat4.create();
 		this.position = vec3.create();
 		this.rotation = quat.create();
 		this.scale = vec3.create();
@@ -20,12 +20,12 @@ class Transformable {
 	setPosition(x, y) {
 		this.position[0] = x;
 		this.position[1] = y;
-		this.updateMatrix();
+		this.updateTransformationMatrix();
 	}
 	move(x, y) {
 		this.position[0] += x;
 		this.position[1] += y;
-		this.updateMatrix();
+		this.updateTransformationMatrix();
 	}
 	setRotation(deg) {
 		quat.identity(this.rotation);
@@ -33,19 +33,19 @@ class Transformable {
 	}
 	rotate(deg) {
 		quat.rotateZ(this.rotation, this.rotation, deg * Math.PI / 180.0);
-		this.updateMatrix();
+		this.updateTransformationMatrix();
 	}
 	setScale(x, y) {
 		this.scale[0] = x;
 		this.scale[1] = y;
-		this.updateMatrix();
+		this.updateTransformationMatrix();
 	}
 	setOrigin(x, y) {
 		this.origin[0] = x;
 		this.origin[1] = y;
-		this.updateMatrix();
+		this.updateTransformationMatrix();
 	}
-	updateMatrix() {
-		mat4.fromRotationTranslationScaleOrigin(this.matrix, this.rotation, this.position, this.scale, this.origin);
+	updateTransformationMatrix() {
+		mat4.fromRotationTranslationScaleOrigin(this.transformationMatrix, this.rotation, this.position, this.scale, this.origin);
 	}
 }

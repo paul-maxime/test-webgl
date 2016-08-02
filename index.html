@@ -3,11 +3,29 @@
 	<head>
 		<meta charset="utf-8">
 		<title>TestGL</title>
-		<style>body {margin:0} #fps {position:fixed;margin:0;left:5px;top:5px} #glcanvas{background:black;}</style>
+		<style>
+#game-container{position:relative;width:90%;margin:0 auto;}
+#ui-fps {
+	color: white;
+	position:absolute;
+	margin:0;
+	left:5px;
+	top:5px;
+	font-size: 1.3em;
+	text-shadow:
+		1px 1px black,
+		-1px 1px black,
+		1px -1px black,
+		-1px -1px black,
+		3px 3px 3px black;
+}
+#game-canvas{background:black;display:block;width:100%}</style>
 	</head>
 	<body>
-		<canvas id="game-canvas" width="640" height="480"></canvas>
-		<p id="fps">FPS: <span id="game-fps"></span></p>
+		<div id="game-container">
+			<canvas id="game-canvas"></canvas>
+			<p id="ui-fps">FPS: <span id="game-fps"></span></p>
+		</div>
 		<script src="vendor/jquery-2.2.3.min.js"></script>
 		<script src="vendor/gl-matrix-2.3.2.js"></script>
 		<script src="test.js"></script>
@@ -16,6 +34,7 @@
 		<script src="src/input.js"></script>
 		<script src="src/keys.js"></script>
 		<script src="src/transformable.js"></script>
+		<script src="src/camera.js"></script>
 		<script src="src/sprite.js"></script>
 		<script src="src/texture.js"></script>
 		<script src="src/buffer.js"></script>

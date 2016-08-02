@@ -5,20 +5,20 @@ class Graphics {
 		this.canvas = null;
 		this.gl = null;
 		this.shaderProgram = null;
+		this.camera = new Camera();
+
 		this.vertexPositionAttribute = null;
+		this.vertexPositionBuffer = null;
 		this.vertexColorAttribute = null;
+		this.vertexColorBuffer = null;
 		this.textureCoordinatesAttribute = null;
-		this.projectionMatrixUniform = null;
-		this.viewMatrixUniform = null;
-		this.modelMatrixUniform = null;
-		this.projectionMatrix = mat4.create();
-		this.cameraMatrix = mat4.create();
-		this.viewMatrix = mat4.create();
+		this.textureCoordinatesBuffer = null;
+
+		this.modelViewProjectionMatrixUniform = null;
+		this.modelViewProjectionMatrix = mat4.create();
+
 		this.boundTexture = null;
 		this.whitePixelTexture = null;
-		this.vertexPositionBuffer = null;
-		this.vertexColorBuffer = null;
-		this.textureCoordinatesBuffer = null;
 	}
 	initialize(canvas) {
 		if (this.initializeGl(canvas) && this.initializeShaders()) {
@@ -29,18 +29,16 @@ class Graphics {
 			this.textureCoordinatesBuffer = new Buffer(this.gl);
 			this.gl.enable(this.gl.BLEND);
 			this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
-			this.setViewport(0, canvas.width, 0, canvas.height);
-			this.updateViewMatrix();
+			this.camera.setOrthographicProjection(0, canvas.width, 0, canvas.height);
 			return true;
 		}
 		return false;
 	}
+	setViewport(x, y, width, height) {
+		this.gl.viewport(x, y, width, height);
+	}
 	clear() {
 		this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-	}
-	setViewport(left, right, bottom, top) {
-		mat4.ortho(this.projectionMatrix, left, right, top, bottom, -100, 100);
-		this.updateProjectionMatrix();
 	}
 	draw(sprite) {
 		this.bindTexture(sprite.texture);
@@ -54,10 +52,13 @@ class Graphics {
 		this.textureCoordinatesBuffer.setDataFromTextureCoordinates(sprite.textureStartX, sprite.textureStartY, sprite.textureEndX, sprite.textureEndY);
 		this.gl.vertexAttribPointer(this.textureCoordinatesAttribute, 2, this.gl.FLOAT, false, 0, 0);
 		
-		this.updateModelMatrix(sprite.matrix);
-		this.gl.uniform4fv(this.spriteColorUniform, sprite.color);
+		this.updateModelViewProjectionMatrix(sprite.transformationMatrix);
 		
 		this.gl.drawArrays(this.gl.TRIANGLE_STRIP, 0, 4);
+	}
+	updateModelViewProjectionMatrix(modelMatrix) {
+		mat4.multiply(this.modelViewProjectionMatrix, this.camera.viewProjectionMatrix, modelMatrix);
+		this.gl.uniformMatrix4fv(this.modelViewProjectionMatrixUniform, false, this.modelViewProjectionMatrix);
 	}
 	createTexture(src) {
 		var texture = new Texture(this.gl);
@@ -101,13 +102,11 @@ class Graphics {
 			'attribute vec3 a_vertexPosition;' +
 			'attribute vec4 a_vertexColor;' +
 			'attribute vec2 a_textureCoordinates;' +
-			'uniform mat4 u_projectionMatrix;' +
-			'uniform mat4 u_viewMatrix;' +
-			'uniform mat4 u_modelMatrix;' +
+			'uniform mat4 u_modelViewProjectionMatrix;' +
 			'varying highp vec2 v_textureCoordinates;' +
 			'varying lowp vec4 v_color;' +
 			'void main(void) {' +
-			'	gl_Position = u_projectionMatrix * u_viewMatrix * u_modelMatrix * vec4(a_vertexPosition, 1.0);' +
+			'	gl_Position = u_modelViewProjectionMatrix * vec4(a_vertexPosition, 1.0);' +
 			'	v_color = a_vertexColor;' +
 			'	v_textureCoordinates = a_textureCoordinates;' +
 			'}'
@@ -142,10 +141,8 @@ class Graphics {
 		this.textureCoordinatesAttribute = this.gl.getAttribLocation(this.shaderProgram, 'a_textureCoordinates');
 		this.gl.enableVertexAttribArray(this.textureCoordinatesAttribute);
 
-		this.projectionMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, 'u_projectionMatrix');
-		this.viewMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, 'u_viewMatrix');
-		this.modelMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, 'u_modelMatrix');
-			
+		this.modelViewProjectionMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, 'u_modelViewProjectionMatrix');
+
 		return true;
 	}
 	createShader(type, source) {
@@ -157,16 +154,6 @@ class Graphics {
 			return null;
 		}
 		return shader;
-	}
-	updateProjectionMatrix() {
-		this.gl.uniformMatrix4fv(this.projectionMatrixUniform, false, this.projectionMatrix);	
-	}
-	updateViewMatrix() {
-		mat4.invert(this.viewMatrix, this.cameraMatrix);
-		this.gl.uniformMatrix4fv(this.viewMatrixUniform, false, this.viewMatrix);
-	}
-	updateModelMatrix(modelMatrix) {
-		this.gl.uniformMatrix4fv(this.modelMatrixUniform, false, modelMatrix);
 	}
 	bindTexture(texture) {
 		if (texture === null) {

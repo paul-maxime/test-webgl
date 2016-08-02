@@ -22,8 +22,8 @@ function start() {
 		sprite3.setColor(0.2, 0.2, 1.0, 1.0);
 		sprite2.setTextureCoordinates(0.5, 0, 1, 1);
 		sprite3.setTextureCoordinates(0, 0, 1, 0.5);
-		tile = graphics.createSprite(640, 480, graphics.createTexture('img/test.png'));
-		tile.setTextureCoordinates(0, 0, 18.0, 15.0)
+		tile = graphics.createSprite(6400, 4800, graphics.createTexture('img/test.png'));
+		tile.setTextureCoordinates(0, 0, 180.0, 150.0)
 		requestAnimationFrame(update);
 	}
 }
@@ -49,18 +49,29 @@ function update() {
 
 function draw() {
 	graphics.clear();
-	//for (var x = 0; x < 20; ++x) {
-	//	for (var y = 0; y < 15; ++y) {
-	//		tile.setPosition(x * 32, y * 32);
-			graphics.draw(tile);
-	//	}
-	//}
+	graphics.draw(tile);
 	graphics.draw(sprite);
 	graphics.draw(sprite2);
 	graphics.draw(sprite3);
 }
 
+function resizeCanvas() {
+	let canvas = document.getElementById('game-canvas');
+	let width = window.innerWidth;
+	let height = window.innerHeight;
+	if (canvas.width != width || canvas.height != height) {
+		canvas.width = width;
+		canvas.height = height;
+		if (graphics) {
+			graphics.camera.setOrthographicProjection(0, canvas.width, 0, canvas.height);
+			graphics.setViewport(0, 0, canvas.width, canvas.height);
+		}
+	}
+}
+
 $(function () {
+	window.addEventListener('resize', resizeCanvas);
+	resizeCanvas();
 	start();
 });
 
