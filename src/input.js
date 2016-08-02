@@ -29,7 +29,7 @@ class Input {
 		this.pressedKeys = {};
 	}
 	
-	static get KEYS() {
+	static get Keys() {
 		return {
 			BACKSPACE   : 8,
 			TAB         : 9,
