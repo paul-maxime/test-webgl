@@ -28,4 +28,12 @@ class Buffer {
 			startX, startY
 		]);
 	}
+	setDataFromColor(r, g, b, a) {
+		this.setData([
+			r, g, b, a,
+			r, g, b, a,
+			r, g, b, a,
+			r, g, b, a
+		]);
+	}
 }

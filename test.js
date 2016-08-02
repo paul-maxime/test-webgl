@@ -34,7 +34,7 @@ function update() {
 	fpsUpdate -= deltaTime;
 	if (fpsUpdate < 0) {
 		$("#fps").text(1 / deltaTime);
-		fpsUpdate = 0.5;
+		fpsUpdate = 0.25;
 	}
 	if (input.isKeyPressed(37)) {
 		sprite.move(100 * deltaTime, 50 * deltaTime);
