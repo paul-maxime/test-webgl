@@ -2,10 +2,10 @@
 
 class Clock {
 	constructor() {
-		this.lastUpdate = Date.now();
+		this.lastUpdate = window.performance.now();
 	}
 	restart() {
-		var now = Date.now();
+		var now = window.performance.now();
 		var delta = now - this.lastUpdate;
 		this.lastUpdate = now;
 		return delta;
