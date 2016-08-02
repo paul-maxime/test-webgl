@@ -39,7 +39,7 @@ class Graphics {
 		this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
 	}
 	setViewport(left, right, bottom, top) {
-		mat4.ortho(this.projectionMatrix, left, right, bottom, top, -100, 100);
+		mat4.ortho(this.projectionMatrix, left, right, top, bottom, -100, 100);
 		this.updateProjectionMatrix();
 	}
 	draw(sprite) {
