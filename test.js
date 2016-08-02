@@ -36,7 +36,7 @@ function update() {
 		$("#game-fps").text(1 / deltaTime);
 		fpsUpdate = 0.25;
 	}
-	if (input.isKeyPressed(Input.Keys.LEFT_ARROW)) {
+	if (input.isKeyPressed(Keys.LEFT_ARROW)) {
 		sprite.move(100 * deltaTime, 50 * deltaTime);
 		sprite.rotate(180 * deltaTime);
 		sprite2.move(105 * deltaTime, 55 * deltaTime);
