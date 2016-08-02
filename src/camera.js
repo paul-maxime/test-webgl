@@ -17,6 +17,6 @@ class Camera extends Transformable {
 		this.updateViewProjectionMatrix();
 	}
 	updateViewProjectionMatrix() {
-		mat4.multiply(this.viewProjectionMatrix, this.viewMatrix, this.projectionMatrix);
+		mat4.multiply(this.viewProjectionMatrix, this.projectionMatrix, this.viewMatrix);
 	}
 }

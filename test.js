@@ -44,6 +44,9 @@ function update() {
 		sprite3.move(110 * deltaTime, 60 * deltaTime);
 		sprite3.rotate(190 * deltaTime);
 	}
+	if (input.isKeyPressed('J'.charCodeAt())) {
+		graphics.camera.move(30 * deltaTime, 10 * deltaTime);
+	}
 	draw();
 }
 
