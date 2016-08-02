@@ -14,8 +14,8 @@ class Graphics {
 		this.textureCoordinatesAttribute = null;
 		this.textureCoordinatesBuffer = null;
 
-		this.modelViewProjectionMatrixUniform = null;
-		this.modelViewProjectionMatrix = mat4.create();
+		this.viewProjectionMatrixUniform = null;
+		this.viewProjectionMatrix = mat4.create();
 
 		this.boundTexture = null;
 		this.whitePixelTexture = null;
@@ -39,26 +39,6 @@ class Graphics {
 	}
 	clear() {
 		this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-	}
-	draw(sprite) {
-		this.bindTexture(sprite.texture);
-		
-		this.vertexPositionBuffer.setDataFromSpriteVertices(sprite.width, sprite.height);
-		this.gl.vertexAttribPointer(this.vertexPositionAttribute, 3, this.gl.FLOAT, false, 0, 0);
-
-		this.vertexColorBuffer.setDataFromColor(sprite.color[0], sprite.color[1], sprite.color[2], sprite.color[3]);
-		this.gl.vertexAttribPointer(this.vertexColorAttribute, 4, this.gl.FLOAT, false, 0, 0);
-		
-		this.textureCoordinatesBuffer.setDataFromTextureCoordinates(sprite.textureStartX, sprite.textureStartY, sprite.textureEndX, sprite.textureEndY);
-		this.gl.vertexAttribPointer(this.textureCoordinatesAttribute, 2, this.gl.FLOAT, false, 0, 0);
-		
-		this.updateModelViewProjectionMatrix(sprite.transformationMatrix);
-		
-		this.gl.drawArrays(this.gl.TRIANGLE_STRIP, 0, 4);
-	}
-	updateModelViewProjectionMatrix(modelMatrix) {
-		mat4.multiply(this.modelViewProjectionMatrix, this.camera.viewProjectionMatrix, modelMatrix);
-		this.gl.uniformMatrix4fv(this.modelViewProjectionMatrixUniform, false, this.modelViewProjectionMatrix);
 	}
 	createTexture(src) {
 		var texture = new Texture(this.gl);
@@ -102,11 +82,11 @@ class Graphics {
 			'attribute vec3 a_vertexPosition;' +
 			'attribute vec4 a_vertexColor;' +
 			'attribute vec2 a_textureCoordinates;' +
-			'uniform mat4 u_modelViewProjectionMatrix;' +
+			'uniform mat4 u_viewProjectionMatrix;' +
 			'varying highp vec2 v_textureCoordinates;' +
 			'varying lowp vec4 v_color;' +
 			'void main(void) {' +
-			'	gl_Position = u_modelViewProjectionMatrix * vec4(a_vertexPosition, 1.0);' +
+			'	gl_Position = u_viewProjectionMatrix * vec4(a_vertexPosition, 1.0);' +
 			'	v_color = a_vertexColor;' +
 			'	v_textureCoordinates = a_textureCoordinates;' +
 			'}'
@@ -141,7 +121,7 @@ class Graphics {
 		this.textureCoordinatesAttribute = this.gl.getAttribLocation(this.shaderProgram, 'a_textureCoordinates');
 		this.gl.enableVertexAttribArray(this.textureCoordinatesAttribute);
 
-		this.modelViewProjectionMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, 'u_modelViewProjectionMatrix');
+		this.viewProjectionMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, 'u_viewProjectionMatrix');
 
 		return true;
 	}

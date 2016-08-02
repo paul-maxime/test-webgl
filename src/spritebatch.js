@@ -106,7 +106,7 @@ class SpriteBatch {
 		this.gl.vertexAttribPointer(graphics.vertexColorAttribute, 4, this.gl.FLOAT, false, 0, this.colorOffset * 4);
 		this.gl.vertexAttribPointer(graphics.textureCoordinatesAttribute, 2, this.gl.FLOAT, false, 0, this.textureOffset * 4);
 		
-		this.gl.uniformMatrix4fv(graphics.modelViewProjectionMatrixUniform, false, graphics.camera.viewProjectionMatrix);
+		this.gl.uniformMatrix4fv(graphics.viewProjectionMatrixUniform, false, graphics.camera.viewProjectionMatrix);
 		
 		graphics.gl.drawArrays(this.gl.TRIANGLES, 0, 6 * this.index);
 	}
