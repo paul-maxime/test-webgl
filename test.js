@@ -8,7 +8,7 @@ var clock;
 var fpsUpdate = 0;
 
 function start() {
-	var canvas = document.getElementById('glcanvas');
+	var canvas = document.getElementById('game-canvas');
 	graphics = new Graphics();
 	if (graphics.initialize(canvas)) {
 		input = new Input(document, canvas);
@@ -33,7 +33,7 @@ function update() {
 	var deltaTime = clock.restart() / 1000;
 	fpsUpdate -= deltaTime;
 	if (fpsUpdate < 0) {
-		$("#fps").text(1 / deltaTime);
+		$("#game-fps").text(1 / deltaTime);
 		fpsUpdate = 0.25;
 	}
 	if (input.isKeyPressed(37)) {

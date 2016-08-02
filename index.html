@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>TestGL</title>
-		<style>#glcanvas{background:black;}</style>
+		<style>body {margin:0} #fps {position:fixed;margin:0;left:5px;top:5px} #glcanvas{background:black;}</style>
 	</head>
 	<body>
-		<canvas id="glcanvas" width="640" height="480"></canvas>
-		<p id="fps"></p>
+		<canvas id="game-canvas" width="640" height="480"></canvas>
+		<p id="fps">FPS: <span id="game-fps"></span></p>
 		<script src="vendor/jquery-2.2.3.min.js"></script>
 		<script src="vendor/gl-matrix-2.3.2.js"></script>
 		<script src="test.js"></script>
