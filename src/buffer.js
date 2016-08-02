@@ -8,12 +8,15 @@ class Buffer {
 	bind() {
 		this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.buffer);	
 	}
-	setData(data) {
+	setFloat32Array(data) {
 		this.bind();
-		this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(data), this.gl.STATIC_DRAW);
+		this.gl.bufferData(this.gl.ARRAY_BUFFER, data, this.gl.STATIC_DRAW);
+	}
+	setArray(data) {
+		this.setFloat32Array(new Float32Array(data));
 	}
 	setDataFromSpriteVertices(width, height) {
-		this.setData([
+		this.setArray([
 			width, height, 0.0,
 			0.0, height, 0.0,
 			width, 0.0, 0.0,
@@ -21,7 +24,7 @@ class Buffer {
 		]);
 	}
 	setDataFromTextureCoordinates(startX, startY, endX, endY) {
-		this.setData([
+		this.setArray([
 			endX, endY,
 			startX, endY,
 			endX, startY,
@@ -29,7 +32,7 @@ class Buffer {
 		]);
 	}
 	setDataFromColor(r, g, b, a) {
-		this.setData([
+		this.setArray([
 			r, g, b, a,
 			r, g, b, a,
 			r, g, b, a,
