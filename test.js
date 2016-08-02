@@ -17,14 +17,9 @@ function start() {
 		clock = new Clock();
 		texture = graphics.createTexture('img/sheet.png');
 		sprite = graphics.createSprite(32, 32, texture);
-		sprite2 = graphics.createSprite(16, 32, texture);
-		sprite3 = graphics.createSprite(32, 16, texture);
 		sprite.setColor(1.0, 0.0, 0.0, 1.0);
-		sprite2.setColor(0.0, 1.0, 0.0, 1.0);
-		sprite3.setColor(0.2, 0.2, 1.0, 1.0);
-		sprite.setTextureCoordinates(0, 0, 0.5, 1.0);
-		sprite2.setTextureCoordinates(0, 0, 0.5, 1.0);
-		sprite3.setTextureCoordinates(0, 0, 0.5, 1.0);
+		sprite.setTextureCoordinates(0 + 0.005, 0, 0.5 - 0.005, 1.0);
+		sprite.setScale(5.0, 5.0);
 		tile = graphics.createSprite(32, 32, texture);
 		tile.setTextureCoordinates(0.5, 0, 1.0, 1.0)
 		requestAnimationFrame(update);
@@ -40,15 +35,13 @@ function update() {
 		$("#game-fps").text(Math.round(10 / deltaTime) / 10);
 		fpsUpdate = 0.1;
 	}
-	if (input.isKeyPressed(Keys.LEFT_ARROW)) {
+	if (input.isKeyPressed(Keys.RIGHT_ARROW)) {
 		sprite.move(100 * deltaTime, 50 * deltaTime);
 		sprite.rotate(180 * deltaTime);
-		sprite2.move(105 * deltaTime, 55 * deltaTime);
-		sprite2.rotate(185 * deltaTime);
-		sprite3.move(110 * deltaTime, 60 * deltaTime);
-		sprite3.rotate(190 * deltaTime);
 	}
-	graphics.camera.move(30 * deltaTime, 10 * deltaTime);
+	if (input.isKeyPressed(Keys.DOWN_ARROW)) {
+		graphics.camera.move(30 * deltaTime, 10 * deltaTime);
+	}
 	draw();
 }
 
@@ -62,8 +55,6 @@ function draw() {
 		}
 	}
 	batch.append(sprite);
-	batch.append(sprite2);
-	batch.append(sprite3);
 	batch.draw(graphics);
 }
 
