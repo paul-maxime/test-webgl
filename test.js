@@ -7,6 +7,7 @@ var input;
 var clock;
 var fpsUpdate = 0;
 var batch;
+var sound;
 
 function start() {
 	let canvas = document.getElementById('game-canvas');
@@ -24,8 +25,13 @@ function start() {
 		tile.setTextureCoordinates(0.5, 0, 1.0, 1.0)
 		requestAnimationFrame(update);
 		batch = new SpriteBatch(graphics.gl, 2048);
+		sound = new SoundManager();
+		sound.register('chop', 'sound/shop.ogg', 1);
+		sound.register('pot', 'sound/metalPot1.ogg', 3);
 	}
 }
+
+var opressed = false;
 
 function update() {
 	requestAnimationFrame(update);
@@ -42,6 +48,11 @@ function update() {
 	if (input.isKeyPressed(Keys.DOWN_ARROW)) {
 		graphics.camera.move(30 * deltaTime, 10 * deltaTime);
 	}
+	if (!opressed && input.isKeyPressed(Keys.O)) {
+		console.log('O');
+		sound.play('pot');
+	}
+	opressed = input.isKeyPressed(Keys.O);
 	draw();
 }
 
