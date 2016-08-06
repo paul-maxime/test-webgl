@@ -23,7 +23,7 @@ class Input {
 		this.pressedKeys[key] = true;
 	}
 	onKeyReleased(key) {
-		delete this.pressedKeys[key];	
+		this.pressedKeys[key] = false;
 	}
 	onFocusLost() {
 		this.pressedKeys = {};
