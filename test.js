@@ -37,7 +37,7 @@ class Game {
 			tile = graphics.createSprite(32, 32, texture);
 			tile.setTextureCoordinates(0.5, 0, 1.0, 1.0)
 			requestAnimationFrame(() => this.update());
-			batch = new SpriteBatch(graphics.gl, 2048);
+			batch = new SpriteBatch(graphics.gl, 512);
 			sound = new SoundManager();
 			sound.register('chop', 'sound/chop.ogg', 1);
 			sound.register('pot', 'sound/metalPot1.ogg', 3);
@@ -70,12 +70,17 @@ class Game {
 
 	draw() {
 		graphics.clear();
-		batch.reset();
 		for (let x = 0; x < 48; ++x) {
 			for (let y = 0; y < 32; ++y) {
 				tile.setPosition(x * 32, y * 32);
+				if (batch.size === batch.capacity) {
+					batch.draw(graphics);
+				}
 				batch.append(tile);
 			}
+		}
+		if (batch.size === batch.capacity) {
+			batch.draw(graphics);
 		}
 		batch.append(sprite);
 		batch.draw(graphics);
