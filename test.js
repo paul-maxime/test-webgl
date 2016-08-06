@@ -45,24 +45,26 @@ class Game {
 	}
 	update() {
 		requestAnimationFrame(() => this.update());
+		input.update();
 		let deltaTime = clock.restart() / 1000;
 		fpsUpdate -= deltaTime;
 		if (fpsUpdate < 0) {
 			$("#game-fps").text(Math.round(10 / deltaTime) / 10);
 			fpsUpdate = 0.1;
 		}
-		if (input.isKeyPressed(Keys.RIGHT_ARROW)) {
+		if (input.isKeyDown(Keys.RIGHT_ARROW)) {
 			sprite.move(100 * deltaTime, 50 * deltaTime);
 			sprite.rotate(180 * deltaTime);
 		}
-		if (input.isKeyPressed(Keys.DOWN_ARROW)) {
+		if (input.isKeyDown(Keys.DOWN_ARROW)) {
 			graphics.camera.move(30 * deltaTime, 10 * deltaTime);
 		}
-		if (!opressed && input.isKeyPressed(Keys.O)) {
-			console.log('O');
-			sound.play('pot');
+		if (input.wasKeyPressed(Keys.O)) {
+			console.log('+O');
 		}
-		opressed = input.isKeyPressed(Keys.O);
+		if (input.wasKeyReleased(Keys.O)) {
+			console.log('-O');
+		}
 		this.draw();
 	}
 
