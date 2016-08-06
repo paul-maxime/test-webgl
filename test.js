@@ -13,7 +13,14 @@ var sound;
 
 class Game {
 	constructor() {
-		
+		this.storage = new Storage('test-game');
+		if (!this.storage.foobar) {
+			this.storage.foobar = 1;
+		} else {
+			this.storage.foobar++;
+		}
+		this.storage.save();
+		console.log(this.storage.foobar);
 	}
 	start() {
 		let canvas = document.getElementById('game-canvas');
@@ -94,4 +101,3 @@ $(function () {
 	window.addEventListener('resize', game.resizeCanvas);
 	game.resizeCanvas();
 });
-
