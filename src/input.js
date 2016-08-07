@@ -1,6 +1,6 @@
 'use strict';
 
-class Input {
+module.exports = class Input {
 	constructor(element, canvas) {
 		this.pressedKeys = {};
 		this.framePressedKeys = {};

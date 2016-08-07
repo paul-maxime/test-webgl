@@ -1,6 +1,8 @@
 'use strict';
 
-class Camera extends Transformable {
+var Transformable = require('./transformable');
+
+module.exports = class Camera extends Transformable {
 	constructor() {
 		super();
 		this.viewProjectionMatrix = mat4.create();

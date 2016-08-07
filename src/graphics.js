@@ -1,6 +1,6 @@
 'use strict';
 
-class Graphics {
+module.exports = class Graphics {
 	constructor () {
 		this.canvas = null;
 		this.gl = null;
@@ -23,9 +23,9 @@ class Graphics {
 		if (this.initializeGl(canvas) && this.initializeShaders()) {
 			this.whitePixelTexture = new Texture(this.gl);
 			this.whitePixelTexture.loadWhitePixel();
-			this.vertexPositionBuffer = new Buffer(this.gl);
-			this.vertexColorBuffer = new Buffer(this.gl);
-			this.textureCoordinatesBuffer = new Buffer(this.gl);
+			this.vertexPositionBuffer = new GLBuffer(this.gl);
+			this.vertexColorBuffer = new GLBuffer(this.gl);
+			this.textureCoordinatesBuffer = new GLBuffer(this.gl);
 			this.gl.enable(this.gl.BLEND);
 			this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
 			this.camera.setOrthographicProjection(0, canvas.width, 0, canvas.height);
@@ -69,7 +69,7 @@ class Graphics {
 		} catch (e) {
 			this.gl = null;
 		}
-		
+
 		if (!this.gl) {
 			console.error('Unable to initialize WebGL. Your browser may not support it.');
 			return false;
@@ -98,19 +98,19 @@ class Graphics {
 			'	gl_FragColor = texture2D(u_sampler, v_textureCoordinates) * v_color;' +
 			'}'
 		);
-		
+
 		this.shaderProgram = this.gl.createProgram();
 		this.gl.attachShader(this.shaderProgram, vertexShader);
 		this.gl.attachShader(this.shaderProgram, fragmentShader);
 		this.gl.linkProgram(this.shaderProgram);
-		
+
 		if (!this.gl.getProgramParameter(this.shaderProgram, this.gl.LINK_STATUS)) {
 			console.error('Unable to initialize the shader program: ' + gl.getProgramInfoLog(shader));
 			return false;
 		}
-		
+
 		this.gl.useProgram(this.shaderProgram);
-		
+
 		this.vertexPositionAttribute = this.gl.getAttribLocation(this.shaderProgram, 'a_vertexPosition');
 		this.gl.enableVertexAttribArray(this.vertexPositionAttribute);
 

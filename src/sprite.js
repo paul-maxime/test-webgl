@@ -1,6 +1,8 @@
 'use strict';
 
-class Sprite extends Transformable {
+var Transformable = require('./transformable');
+
+module.exports = class Sprite extends Transformable {
 	constructor() {
 		super();
 		this.width = 0;

@@ -1,6 +1,6 @@
 'use strict';
 
-class SpriteBatch {
+module.exports = class SpriteBatch {
 	constructor(gl, capacity) {
 		this.gl = gl;
 		this.capacity = capacity;

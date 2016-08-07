@@ -1,6 +1,6 @@
 'use strict';
 
-class Buffer {
+module.exports = class GLBuffer {
 	constructor(gl) {
 		this.gl = gl;
 		this.buffer = this.gl.createBuffer();
@@ -8,7 +8,7 @@ class Buffer {
 	bind() {
 		if (this.gl.boundBuffer !== this) {
 			this.gl.boundBuffer = this;
-			this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.buffer);	
+			this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.buffer);
 		}
 	}
 	setFloat32Array(data) {

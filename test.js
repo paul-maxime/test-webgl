@@ -13,7 +13,7 @@ var sound;
 
 class Game {
 	constructor() {
-		this.storage = new Storage('test-game');
+		this.storage = new GameLib.Storage('test-game');
 		if (!this.storage.foobar) {
 			this.storage.foobar = 1;
 		} else {
@@ -23,7 +23,7 @@ class Game {
 		console.log(this.storage.foobar);
 	}
 	start() {
-		let canvas = document.getElementById('game-canvas');
+		/*let canvas = document.getElementById('game-canvas');
 		graphics = new Graphics();
 		if (graphics.initialize(canvas)) {
 			graphics.camera.setOrigin(canvas.width / 2, canvas.height / 2);
@@ -41,7 +41,7 @@ class Game {
 			sound = new SoundManager();
 			sound.register('chop', 'sound/chop.ogg', 1);
 			sound.register('pot', 'sound/metalPot1.ogg', 3);
-		}
+		}*/
 	}
 	update() {
 		requestAnimationFrame(() => this.update());
@@ -87,7 +87,7 @@ class Game {
 	}
 
 	resizeCanvas() {
-		let canvas = document.getElementById('game-canvas');
+		/*let canvas = document.getElementById('game-canvas');
 		let width = window.innerWidth;
 		let height = window.innerHeight;
 		if (canvas.width != width || canvas.height != height) {
@@ -98,7 +98,7 @@ class Game {
 				graphics.camera.setOrigin(canvas.width / 2, canvas.height / 2);
 				graphics.setViewport(0, 0, canvas.width, canvas.height);
 			}
-		}
+		}*/
 	}
 }
 

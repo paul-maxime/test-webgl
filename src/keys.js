@@ -45,3 +45,5 @@ var Keys = Object.freeze({
 	Y           : 89,
 	Z           : 90
 });
+
+module.exports = Keys;

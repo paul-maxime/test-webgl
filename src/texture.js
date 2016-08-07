@@ -1,6 +1,6 @@
 'use strict';
 
-class Texture {
+module.exports = class Texture {
 	constructor(gl) {
 		this.gl = gl;
 		this.texture = this.gl.createTexture();
