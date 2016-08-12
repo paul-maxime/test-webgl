@@ -13,7 +13,7 @@ var sound;
 
 class Game {
 	constructor() {
-		this.storage = new GameLib.Storage('test-game');
+		this.storage = new Yaje.Storage('test-game');
 		if (!this.storage.foobar) {
 			this.storage.foobar = 1;
 		} else {
@@ -23,12 +23,12 @@ class Game {
 		console.log(this.storage.foobar);
 	}
 	start() {
-		/*let canvas = document.getElementById('game-canvas');
-		graphics = new Graphics();
+		let canvas = document.getElementById('game-canvas');
+		graphics = new Yaje.Graphics();
 		if (graphics.initialize(canvas)) {
 			graphics.camera.setOrigin(canvas.width / 2, canvas.height / 2);
-			input = new Input(document, canvas);
-			clock = new Clock();
+			input = new Yaje.Input(document, canvas);
+			clock = new Yaje.Clock();
 			texture = graphics.createTexture('img/sheet.png');
 			sprite = graphics.createSprite(32, 32, texture);
 			sprite.setColor(1.0, 0.0, 0.0, 1.0);
@@ -37,11 +37,11 @@ class Game {
 			tile = graphics.createSprite(32, 32, texture);
 			tile.setTextureCoordinates(0.5, 0, 1.0, 1.0)
 			requestAnimationFrame(() => this.update());
-			batch = new SpriteBatch(graphics.gl, 512);
-			sound = new SoundManager();
+			batch = new Yaje.SpriteBatch(graphics.gl, 512);
+			sound = new Yaje.SoundManager();
 			sound.register('chop', 'sound/chop.ogg', 1);
 			sound.register('pot', 'sound/metalPot1.ogg', 3);
-		}*/
+		}
 	}
 	update() {
 		requestAnimationFrame(() => this.update());
@@ -52,17 +52,17 @@ class Game {
 			$("#game-fps").text(Math.round(10 / deltaTime) / 10);
 			fpsUpdate = 0.1;
 		}
-		if (input.isKeyDown(Keys.RIGHT_ARROW)) {
+		if (input.isKeyDown(Yaje.Keys.RIGHT_ARROW)) {
 			sprite.move(100 * deltaTime, 50 * deltaTime);
 			sprite.rotate(180 * deltaTime);
 		}
-		if (input.isKeyDown(Keys.DOWN_ARROW)) {
+		if (input.isKeyDown(Yaje.Keys.DOWN_ARROW)) {
 			graphics.camera.move(30 * deltaTime, 10 * deltaTime);
 		}
-		if (input.wasKeyPressed(Keys.O)) {
+		if (input.wasKeyPressed(Yaje.Keys.O)) {
 			console.log('+O');
 		}
-		if (input.wasKeyReleased(Keys.O)) {
+		if (input.wasKeyReleased(Yaje.Keys.O)) {
 			console.log('-O');
 		}
 		this.draw();
@@ -87,7 +87,7 @@ class Game {
 	}
 
 	resizeCanvas() {
-		/*let canvas = document.getElementById('game-canvas');
+		let canvas = document.getElementById('game-canvas');
 		let width = window.innerWidth;
 		let height = window.innerHeight;
 		if (canvas.width != width || canvas.height != height) {
@@ -98,7 +98,7 @@ class Game {
 				graphics.camera.setOrigin(canvas.width / 2, canvas.height / 2);
 				graphics.setViewport(0, 0, canvas.width, canvas.height);
 			}
-		}*/
+		}
 	}
 }
 
