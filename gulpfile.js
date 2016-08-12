@@ -21,6 +21,10 @@ gulp.task('default', ['clean'], function() {
 	return browserify('./src/index.js')
 		.transform('babelify')
 		.bundle()
+		.on('error', function (err) {
+			console.log(err.toString());
+			this.emit('end');
+		})
 		.pipe(source('index.js'))
 		.pipe(streamify(uglify()))
 		.pipe(rename('yaje.min.js'))
