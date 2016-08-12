@@ -27,10 +27,10 @@ export default class Input {
 		}
 	}
 	wasKeyPressed(key) {
-		return this.framePressedKeys[key] === true && this.previousPressedKeys[key] === false;
+		return this.framePressedKeys[key] && !this.previousPressedKeys[key];
 	}
 	wasKeyReleased(key) {
-		return this.framePressedKeys[key] === false && this.previousPressedKeys[key] === true;
+		return !this.framePressedKeys[key] && this.previousPressedKeys[key];
 	}
 	isKeyDown(key) {
 		return this.pressedKeys[key] === true;
