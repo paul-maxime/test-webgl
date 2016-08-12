@@ -18,7 +18,7 @@ gulp.task('default', ['clean'], function() {
 		.transform('babelify')
 		.bundle()
 		.pipe(source('index.js'))
-		//.pipe(streamify(uglify()))
+		.pipe(streamify(uglify()))
 		.pipe(rename('yaje.min.js'))
 		.pipe(gulp.dest('build'))
 });
