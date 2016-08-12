@@ -9,6 +9,10 @@ var rename = require('gulp-rename')
 var gulp = require('gulp')
 var del = require('del')
 
+var paths = {
+	scripts: ['src/**.js']
+};
+
 gulp.task('clean', function() {
 	return del(['build']);
 });
@@ -21,4 +25,8 @@ gulp.task('default', ['clean'], function() {
 		.pipe(streamify(uglify()))
 		.pipe(rename('yaje.min.js'))
 		.pipe(gulp.dest('build'))
+});
+
+gulp.task('watch', function() {
+	gulp.watch(paths.scripts, ['default']);
 });
