@@ -1,5 +1,10 @@
 'use strict';
 
+import Buffer from './glbuffer';
+import Camera from './camera';
+import Sprite from './sprite';
+import Texture from './texture';
+
 export default class Graphics {
 	constructor () {
 		this.canvas = null;
@@ -23,9 +28,9 @@ export default class Graphics {
 		if (this.initializeGl(canvas) && this.initializeShaders()) {
 			this.whitePixelTexture = new Texture(this.gl);
 			this.whitePixelTexture.loadWhitePixel();
-			this.vertexPositionBuffer = new GLBuffer(this.gl);
-			this.vertexColorBuffer = new GLBuffer(this.gl);
-			this.textureCoordinatesBuffer = new GLBuffer(this.gl);
+			this.vertexPositionBuffer = new Buffer(this.gl);
+			this.vertexColorBuffer = new Buffer(this.gl);
+			this.textureCoordinatesBuffer = new Buffer(this.gl);
 			this.gl.enable(this.gl.BLEND);
 			this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
 			this.camera.setOrthographicProjection(0, canvas.width, 0, canvas.height);

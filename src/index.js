@@ -1,16 +1,29 @@
 'use strict';
 
-window.GameLib = {}
-window.GameLib.Camera = require('./camera');
-window.GameLib.Clock = require('./clock');
-window.GameLib.GLBuffer = require('./glbuffer');
-window.GameLib.Graphics = require('./graphics');
-window.GameLib.Input = require('./input');
-window.GameLib.Keys = require('./keys');
-window.GameLib.SoundManager = require('./sound').SoundManager;
-window.GameLib.Sound = require('./sound').Sound;
-window.GameLib.SpriteBatch = require('./spritebatch');
-window.GameLib.Sprite = require('./sprite');
-window.GameLib.Storage = require('./storage');
-window.GameLib.Texture = require('./texture');
-window.GameLib.Transformable = require('./transformable');
+window.Yaje = {}
+
+import Buffer from './glbuffer';
+import Camera from './camera';
+import Clock from './clock';
+import Graphics from './graphics';
+import Input from './input';
+import Keys from './keys';
+import SoundManager from './soundmanager';
+import Sprite from './sprite';
+import SpriteBatch from './spritebatch';
+import Storage from './storage';
+import Texture from './texture';
+import Transformable from './transformable';
+
+window.Yaje.Buffer = Buffer;
+window.Yaje.Camera = Camera;
+window.Yaje.Clock = Clock;
+window.Yaje.Graphics = Graphics;
+window.Yaje.Input = Input;
+window.Yaje.Keys = Keys;
+window.Yaje.SoundManager = SoundManager;
+window.Yaje.Sprite = Sprite;
+window.Yaje.SpriteBatch = SpriteBatch;
+window.Yaje.Storage = Storage;
+window.Yaje.Texture = Texture;
+window.Yaje.Transformable = Transformable;

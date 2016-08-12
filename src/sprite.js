@@ -1,6 +1,6 @@
 'use strict';
 
-var Transformable = require('./transformable');
+import Transformable from './transformable';
 
 export default class Sprite extends Transformable {
 	constructor() {

@@ -1,6 +1,6 @@
 'use strict';
 
-export default = class Texture {
+export default class Texture {
 	constructor(gl) {
 		this.gl = gl;
 		this.texture = this.gl.createTexture();

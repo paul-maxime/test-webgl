@@ -1,6 +1,6 @@
 'use strict';
 
-export default = class SpriteBatch {
+export default class SpriteBatch {
 	constructor(gl, capacity) {
 		this.gl = gl;
 		this.capacity = capacity;
