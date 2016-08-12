@@ -2,7 +2,7 @@
 
 var Transformable = require('./transformable');
 
-module.exports = class Sprite extends Transformable {
+export default class Sprite extends Transformable {
 	constructor() {
 		super();
 		this.width = 0;

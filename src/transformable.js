@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = class Transformable {
+export default class Transformable {
 	constructor() {
 		this.transformationMatrix = mat4.create();
 		this.position = vec3.create();

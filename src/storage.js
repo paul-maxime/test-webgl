@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = class Storage {
+export default = class Storage {
 	constructor(keyname) {
 		this.keyname = keyname;
 		this.load();

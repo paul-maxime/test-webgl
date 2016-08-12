@@ -1,6 +1,6 @@
 'use strict';
 
-class SoundManager {
+export class SoundManager {
 	constructor() {
 		this.sounds = {};
 		this.isMuted = false;
@@ -16,7 +16,7 @@ class SoundManager {
 	}
 }
 
-class Sound {
+export class Sound {
 	constructor(path, number) {
 		this.audios = [];
 		for (var i = 0; i < number; ++i) {
@@ -33,5 +33,3 @@ class Sound {
 		}
 	}
 }
-
-module.exports = { SoundManager, Sound };

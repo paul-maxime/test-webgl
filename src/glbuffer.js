@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = class GLBuffer {
+export default class GLBuffer {
 	constructor(gl) {
 		this.gl = gl;
 		this.buffer = this.gl.createBuffer();

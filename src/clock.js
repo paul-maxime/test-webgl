@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = class Clock {
+export default class Clock {
 	constructor() {
 		this.lastUpdate = window.performance.now();
 	}

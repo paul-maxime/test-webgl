@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = class Graphics {
+export default class Graphics {
 	constructor () {
 		this.canvas = null;
 		this.gl = null;

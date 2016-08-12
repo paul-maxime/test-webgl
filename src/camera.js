@@ -2,7 +2,7 @@
 
 var Transformable = require('./transformable');
 
-module.exports = class Camera extends Transformable {
+export default class Camera extends Transformable {
 	constructor() {
 		super();
 		this.viewProjectionMatrix = mat4.create();
