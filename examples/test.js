@@ -26,13 +26,12 @@ class Game {
 		let canvas = document.getElementById('game-canvas');
 		graphics = new Yaje.Graphics();
 		if (graphics.initialize(canvas)) {
-			graphics.camera.setOrigin(canvas.width / 2, canvas.height / 2);
 			input = new Yaje.Input(document, canvas);
 			clock = new Yaje.Clock();
 			texture = graphics.createTexture('img/sheet.png');
 			sprite = graphics.createSprite(32, 32, texture);
 			sprite.setColor(1.0, 0.0, 0.0, 1.0);
-			sprite.setTextureCoordinates(0 + 0.005, 0, 0.5 - 0.005, 1.0);
+			sprite.setTextureCoordinates(0, 0, 0.5, 1.0);
 			sprite.setScale(5.0, 5.0);
 			tile = graphics.createSprite(32, 32, texture);
 			tile.setTextureCoordinates(0.5, 0, 1.0, 1.0)
@@ -70,7 +69,7 @@ class Game {
 
 	draw() {
 		graphics.clear();
-		for (let x = 0; x < 48; ++x) {
+		for (let x = 0; x < 64; ++x) {
 			for (let y = 0; y < 32; ++y) {
 				tile.setPosition(x * 32, y * 32);
 				if (batch.size === batch.capacity) {

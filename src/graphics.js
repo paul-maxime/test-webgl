@@ -34,6 +34,7 @@ export default class Graphics {
 			this.gl.enable(this.gl.BLEND);
 			this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
 			this.camera.setOrthographicProjection(0, canvas.width, 0, canvas.height);
+			this.camera.setOrigin(canvas.width / 2, canvas.height / 2);
 			return true;
 		}
 		return false;
