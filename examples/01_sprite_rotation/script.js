@@ -12,11 +12,11 @@ class Game {
 	update() {
 		requestAnimationFrame(() => this.update());
 		
-		// retrieve the elapsed time in seconds.
-		let deltaTime = this.clock.restart() / 1000;
+		// update the clock to retrieve the elapsed time in seconds.
+		this.clock.update();
 		
 		// rotate the sprite 180 degrees per seconds.
-		this.sprite.rotate(180 * deltaTime);
+		this.sprite.rotate(180 * this.clock.deltaTime);
 		
 		this.draw();
 	}
