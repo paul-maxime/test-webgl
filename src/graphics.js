@@ -4,6 +4,7 @@ import Buffer from './glbuffer';
 import Camera from './camera';
 import Sprite from './sprite';
 import Texture from './texture';
+import SpriteBatch from './spritebatch';
 
 export default class Graphics {
 	constructor () {
@@ -23,6 +24,7 @@ export default class Graphics {
 		this.viewProjectionMatrix = mat4.create();
 
 		this.whitePixelTexture = null;
+		this.defaultSpriteBatch = null;
 	}
 	initialize(canvas) {
 		if (this.initializeGl(canvas) && this.initializeShaders()) {
@@ -35,6 +37,7 @@ export default class Graphics {
 			this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
 			this.camera.setOrthographicProjection(0, canvas.width, 0, canvas.height);
 			this.camera.setOrigin(canvas.width / 2, canvas.height / 2);
+			this.defaultSpriteBatch = new SpriteBatch(this.gl, 256);
 			return true;
 		}
 		return false;
@@ -147,5 +150,14 @@ export default class Graphics {
 		if (texture.initialized) {
 			texture.bind();
 		}
+	}
+	draw(sprite) {
+		this.defaultSpriteBatch.append(sprite);
+		if (this.defaultSpriteBatch.size === this.defaultSpriteBatch.capacity) {
+			this.display();
+		}
+	}
+	display() {
+		this.defaultSpriteBatch.draw(this);
 	}
 }

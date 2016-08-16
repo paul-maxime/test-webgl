@@ -5,7 +5,6 @@ class Game {
 		this.clock = new Yaje.Clock();
 		this.graphics = new Yaje.Graphics();
 		if (this.graphics.initialize(document.getElementById('game-canvas'))) {
-			this.batch = new Yaje.SpriteBatch(this.graphics.gl, 512);
 			let texture = this.graphics.createTexture('hippo.png');
 			this.sprite = this.graphics.createSprite(294, 293, texture);
 		}
@@ -27,8 +26,10 @@ class Game {
 		this.graphics.clear();
 		
 		// draw the sprite.
-		this.batch.append(this.sprite);
-		this.batch.draw(this.graphics);
+		this.graphics.draw(this.sprite);
+		
+		// finalize the frame.
+		this.graphics.display();
 	}
 }
 
