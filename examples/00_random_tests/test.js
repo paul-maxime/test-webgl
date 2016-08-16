@@ -8,7 +8,6 @@ var texture;
 var input;
 var clock;
 var fpsUpdate = 0;
-var batch;
 var sound;
 
 class Game {
@@ -36,7 +35,6 @@ class Game {
 			tile = graphics.createSprite(32, 32, texture);
 			tile.setTextureCoordinates(0.5, 0, 1.0, 1.0)
 			requestAnimationFrame(() => this.update());
-			batch = new Yaje.SpriteBatch(graphics.gl, 512);
 			sound = new Yaje.SoundManager();
 			sound.register('chop', 'assets/sounds/chop.ogg', 1);
 			sound.register('pot', 'assets/sounds/metalPot1.ogg', 3);
@@ -45,18 +43,18 @@ class Game {
 	update() {
 		requestAnimationFrame(() => this.update());
 		input.update();
-		let deltaTime = clock.restart() / 1000;
-		fpsUpdate -= deltaTime;
+		clock.update();
+		fpsUpdate -= clock.deltaTime;
 		if (fpsUpdate < 0) {
-			$("#game-fps").text(Math.round(10 / deltaTime) / 10);
+			$("#game-fps").text(Math.round(10 / clock.deltaTime) / 10);
 			fpsUpdate = 0.1;
 		}
 		if (input.isKeyDown(Yaje.Keys.RIGHT_ARROW)) {
-			sprite.move(100 * deltaTime, 50 * deltaTime);
-			sprite.rotate(180 * deltaTime);
+			sprite.move(100 * clock.deltaTime, 50 * clock.deltaTime);
+			sprite.rotate(180 * clock.deltaTime);
 		}
 		if (input.isKeyDown(Yaje.Keys.DOWN_ARROW)) {
-			graphics.camera.move(30 * deltaTime, 10 * deltaTime);
+			graphics.camera.move(30 * clock.deltaTime, 10 * clock.deltaTime);
 		}
 		if (input.wasKeyPressed(Yaje.Keys.O)) {
 			console.log('+O');
@@ -72,17 +70,11 @@ class Game {
 		for (let x = 0; x < 64; ++x) {
 			for (let y = 0; y < 32; ++y) {
 				tile.setPosition(x * 32, y * 32);
-				if (batch.size === batch.capacity) {
-					batch.draw(graphics);
-				}
-				batch.append(tile);
+				graphics.draw(tile);
 			}
 		}
-		if (batch.size === batch.capacity) {
-			batch.draw(graphics);
-		}
-		batch.append(sprite);
-		batch.draw(graphics);
+		graphics.draw(sprite);
+		graphics.display();
 	}
 
 	resizeCanvas() {
