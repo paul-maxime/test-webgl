@@ -6,7 +6,7 @@ class Game {
 		this.graphics = new Yaje.Graphics();
 		if (this.graphics.initialize(document.getElementById('game-canvas'))) {
 			let texture = this.graphics.createTexture('hippo.png');
-			this.sprite = this.graphics.createSprite(294, 293, texture);
+			this.sprite = this.graphics.createSprite(128, 128, texture);
 		}
 	}
 	update() {
