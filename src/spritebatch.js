@@ -99,6 +99,8 @@ export default class SpriteBatch {
 		this.size++;
 	}
 	draw(graphics) {
+		if (this.size == 0) return;
+		
 		graphics.bindTexture(this.texture);
 
 		graphics.vertexPositionBuffer.setFloat32Array(this.vertexArray);
