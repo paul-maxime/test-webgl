@@ -32,5 +32,6 @@ export default class SpriteSheet {
 			(info.x + info.width) / this.width,
 			(info.x + info.height) / this.height
 		);
+		return sprite;
 	}
 }
