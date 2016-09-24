@@ -35,7 +35,7 @@ class Game {
 			tile = graphics.createSprite(32, 32, texture);
 			tile.setTextureCoordinates(0.5, 0, 1.0, 1.0)
 			requestAnimationFrame(() => this.update());
-			sound = new Yaje.SoundManager();
+			sound = new Yaje.SoundPlayer();
 			sound.register('chop', 'assets/sounds/chop.ogg', 1);
 			sound.register('pot', 'assets/sounds/metalPot1.ogg', 3);
 		}
