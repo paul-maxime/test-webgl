@@ -3,11 +3,11 @@
 import Transformable from './transformable';
 
 export default class Sprite extends Transformable {
-	constructor() {
+	constructor(width, height, texture) {
 		super();
-		this.width = 0;
-		this.height = 0;
-		this.texture = null;
+		this.width = width;
+		this.height = height;
+		this.texture = texture;
 		this.textureStartX = 0;
 		this.textureStartY = 0;
 		this.textureEndX = 1.0;
@@ -21,6 +21,7 @@ export default class Sprite extends Transformable {
 			vec3.create()
 		];
 		this.areVerticesDirty = true;
+		this.setOrigin(width / 2, height / 2);
 	}
 	setTextureCoordinates(startX, startY, endX, endY) {
 		this.textureStartX = startX + Sprite.TEXTURE_EPSILON;

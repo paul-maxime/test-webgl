@@ -59,17 +59,6 @@ export default class Graphics {
 		image.src = src;
 		return texture;
 	}
-	createSprite(width, height, texture) {
-		var sprite = new Sprite(this.gl);
-		sprite.setSize(width, height);
-		if (texture !== undefined && texture !== null) {
-			sprite.texture = texture;
-		} else {
-			sprite.texture = this.whitePixelTexture;
-		}
-		sprite.setOrigin(width / 2, height / 2);
-		return sprite;
-	}
 	initializeGl(canvas) {
 		this.canvas = canvas;
 		this.gl = null;

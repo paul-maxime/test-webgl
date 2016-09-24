@@ -28,11 +28,11 @@ class Game {
 			input = new Yaje.Input(document, canvas);
 			clock = new Yaje.Clock();
 			texture = graphics.createTexture('assets/textures/sheet.png');
-			sprite = graphics.createSprite(32, 32, texture);
+			sprite = new Yaje.Sprite(32, 32, texture);
 			sprite.setColor(1.0, 0.0, 0.0, 1.0);
 			sprite.setTextureCoordinates(0, 0, 0.5, 1.0);
 			sprite.setScale(5.0, 5.0);
-			tile = graphics.createSprite(32, 32, texture);
+			tile = new Yaje.Sprite(32, 32, texture);
 			tile.setTextureCoordinates(0.5, 0, 1.0, 1.0)
 			requestAnimationFrame(() => this.update());
 			sound = new Yaje.SoundPlayer();
