@@ -24,10 +24,10 @@ export default class Sprite extends Transformable {
 		this.setOrigin(width / 2, height / 2);
 	}
 	setTextureCoordinates(startX, startY, endX, endY) {
-		this.textureStartX = startX + Sprite.TEXTURE_EPSILON;
-		this.textureStartY = startY + Sprite.TEXTURE_EPSILON;
-		this.textureEndX = endX - Sprite.TEXTURE_EPSILON;
-		this.textureEndY = endY - Sprite.TEXTURE_EPSILON;
+		this.textureStartX = startX;
+		this.textureStartY = startY;
+		this.textureEndX = endX;
+		this.textureEndY = endY;
 	}
 	setColor(r, g, b, a) {
 		this.color[0] = r;
@@ -51,4 +51,3 @@ export default class Sprite extends Transformable {
 	}
 }
 
-Sprite.TEXTURE_EPSILON = 0.005;
