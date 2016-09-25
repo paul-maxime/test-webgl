@@ -10,6 +10,6 @@ export default class Clock {
 		var delta = now - this.lastUpdate;
 		this.lastUpdate = now;
 		this.deltaTime = delta / 1000;
-		return delta;
+		return this.deltaTime;
 	}
 }
