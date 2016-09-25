@@ -21,13 +21,13 @@ export default class Transformable {
 	setPosition(x, y) {
 		this.position[0] = x;
 		this.position[1] = y;
-		vec3.floor(this.positionRounded, this.position);
+		vec3.round(this.positionRounded, this.position);
 		this.updateTransformationMatrix();
 	}
 	move(x, y) {
 		this.position[0] += x;
 		this.position[1] += y;
-		vec3.floor(this.positionRounded, this.position);
+		vec3.round(this.positionRounded, this.position);
 		this.updateTransformationMatrix();
 	}
 	setRotation(deg) {
