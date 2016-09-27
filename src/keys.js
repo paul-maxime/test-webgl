@@ -8,6 +8,7 @@ var Keys = Object.freeze({
 	CTRL        : 17,
 	ALT         : 18,
 	ESCAPE      : 27,
+	SPACE       : 32,
 	PAGE_UP     : 33,
 	PAGE_DOWN   : 34,
 	END         : 35,
