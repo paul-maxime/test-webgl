@@ -26,12 +26,19 @@ export default class SpriteSheet {
 	createSprite(name) {
 		let info = this.spriteCoordinates[name];
 		let sprite = new Sprite(info.width, info.height, this.texture);
+		setSpriteTextureFromCoordinates(sprite, info);
+		return sprite;
+	}
+	setSpriteTexture(sprite, name) {
+		let info = this.spriteCoordinates[name];
+		setSpriteTextureFromCoordinates(sprite, info);
+	}
+	setSpriteTextureFromCoordinates(sprite, info) {
 		sprite.setTextureCoordinates(
 			info.x / this.width,
 			info.y / this.height,
 			(info.x + info.width) / this.width,
 			(info.y + info.height) / this.height
 		);
-		return sprite;
 	}
 }
