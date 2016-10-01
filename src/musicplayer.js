@@ -18,6 +18,7 @@ export default class MusicPlayer {
 			this.currentMusic = music;
 			if (music != null) {
 				music.play();
+				music.loop = true;
 			}
 		}
 	}
