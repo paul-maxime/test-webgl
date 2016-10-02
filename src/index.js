@@ -1,6 +1,8 @@
 'use strict';
 
-window.Yaje = {}
+window.Yaje = {
+	VERSION: '0.3.0'
+}
 
 import Buffer from './glbuffer';
 import Camera from './camera';
