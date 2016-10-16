@@ -49,11 +49,11 @@ class Game {
 			$("#game-fps").text(Math.round(10 / clock.deltaTime) / 10);
 			fpsUpdate = 0.1;
 		}
-		if (input.isKeyDown(Yaje.Keys.RIGHT_ARROW)) {
+		if (input.isKeyDown(Yaje.Keys.ARROW_RIGHT)) {
 			sprite.move(100 * clock.deltaTime, 50 * clock.deltaTime);
 			sprite.rotate(180 * clock.deltaTime);
 		}
-		if (input.isKeyDown(Yaje.Keys.DOWN_ARROW)) {
+		if (input.isKeyDown(Yaje.Keys.ARROW_DOWN)) {
 			graphics.camera.move(30 * clock.deltaTime, 10 * clock.deltaTime);
 		}
 		if (input.wasKeyPressed(Yaje.Keys.O)) {
