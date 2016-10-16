@@ -4,6 +4,7 @@ window.Yaje = {
 	VERSION: '0.3.0'
 }
 
+import BoxCollider from './boxcollider';
 import Buffer from './glbuffer';
 import Camera from './camera';
 import Clock from './clock';
@@ -19,6 +20,7 @@ import Storage from './storage';
 import Texture from './texture';
 import Transformable from './transformable';
 
+window.Yaje.BoxCollider = BoxCollider;
 window.Yaje.Buffer = Buffer;
 window.Yaje.Camera = Camera;
 window.Yaje.Clock = Clock;
