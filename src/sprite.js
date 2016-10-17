@@ -22,7 +22,6 @@ export default class Sprite extends Transformable {
 		];
 		this.areVerticesDirty = true;
 		this.setOrigin(width / 2, height / 2);
-		this.collider = null;
 	}
 	setTextureCoordinates(startX, startY, endX, endY) {
 		this.textureStartX = startX;
@@ -49,11 +48,5 @@ export default class Sprite extends Transformable {
 			vec3.transformMat4(this.vertices[i], this.vertices[i], this.transformationMatrix);
 		}
 		this.areVerticesDirty = false;
-	}
-	intersectWith(sprite) {
-		if (this.collider !== null && sprite.collider !== null) {
-			return this.collider.intersectWith(sprite.collider);
-		}
-		return false;
 	}
 }
