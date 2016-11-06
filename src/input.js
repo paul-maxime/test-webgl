@@ -32,6 +32,14 @@ export default class Input {
 	wasKeyReleased(key) {
 		return !this.framePressedKeys[key] && this.previousPressedKeys[key];
 	}
+	wasAnyKeyReleased() {
+		for (var key in this.previousPressedKeys) {
+			if (!this.framePressedKeys[key] && this.previousPressedKeys[key]) {
+				return true;
+			}
+		}
+		return false;
+	}
 	isKeyDown(key) {
 		return this.pressedKeys[key] === true;
 	}
