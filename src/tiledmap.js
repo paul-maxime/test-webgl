@@ -8,9 +8,10 @@ export default class TiledMap {
 		this.content = content;
 		this.sprite = new Sprite(0, 0, null);
 		this.textures = {};
+		this.animationTime = 0;
 	}
 	update(deltaTime) {
-		// TODO update the animations
+		this.animationTime += deltaTime * 1000;
 	}
 	draw() {
 		for (let layer of this.content.layers) {
@@ -30,7 +31,7 @@ export default class TiledMap {
 	}
 	drawTile(gid, tileX, tileY) {
 		if (gid === 0) return;
-		
+
 		for (let tileset of this.content.tilesets) {
 			if (gid >= tileset.firstgid && gid <= tileset.firstgid + tileset.tilecount) {
 				this.sprite.texture = this.textures[tileset.image];
@@ -40,11 +41,11 @@ export default class TiledMap {
 					this.content.tilewidth * tileX,
 					this.content.tileheight * tileY
 				);
-				
-				let tilesetIndex = gid - tileset.firstgid;
-				let tilesetX = tilesetIndex % tileset.columns;
-				let tilesetY = Math.floor(tilesetIndex / tileset.columns);
-				
+
+				let tileId = this.getEffectiveTileId(tileset, gid);
+				let tilesetX = tileId % tileset.columns;
+				let tilesetY = Math.floor(tileId / tileset.columns);
+
 				let textureX = tilesetX * tileset.tilewidth;
 				let textureY = tilesetY * tileset.tileheight;
 				this.sprite.setTextureCoordinates(
@@ -53,10 +54,34 @@ export default class TiledMap {
 					(textureX + tileset.tilewidth) / tileset.imagewidth,
 					(textureY + tileset.tileheight) / tileset.imageheight
 				);
-				
+
 				this.graphics.draw(this.sprite);
 			}
 		}
+	}
+	getEffectiveTileId(tileset, gid) {
+		let tileId = gid - tileset.firstgid;
+		if (tileset.tiles) {
+			let tiledata = tileset.tiles[tileId];
+			if (tiledata) {
+				let animation = tiledata.animation;
+				if (animation) {
+					let totalTime = 0;
+					for (let frame of animation) {
+						totalTime += frame.duration;
+					}
+					let currentTime = Math.floor(this.animationTime) % totalTime;
+					totalTime = 0;
+					for (let frame of animation) {
+						totalTime += frame.duration;
+						if (totalTime >= currentTime) {
+							return frame.tileid;
+						}
+					}
+				}
+			}
+		}
+		return tileId;
 	}
 	registerTexture(name, texture) {
 		this.textures[name] = texture;
