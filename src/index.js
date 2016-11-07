@@ -19,6 +19,7 @@ import SpriteBatch from './spritebatch';
 import SpriteSheet from './spritesheet';
 import Storage from './storage';
 import Texture from './texture';
+import TiledMap from './tiledmap';
 import Transformable from './transformable';
 
 window.Yaje.BoxCollider = BoxCollider;
@@ -36,4 +37,5 @@ window.Yaje.SpriteBatch = SpriteBatch;
 window.Yaje.SpriteSheet = SpriteSheet;
 window.Yaje.Storage = Storage;
 window.Yaje.Texture = Texture;
+window.Yaje.TiledMap = TiledMap;
 window.Yaje.Transformable = Transformable;

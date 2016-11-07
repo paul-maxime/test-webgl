@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="64" tileheight="64" nextobjectid="20">
+ <tileset firstgid="1" name="Sheet" tilewidth="64" tileheight="64" tilecount="512" columns="32">
+  <image source="sheet.png" width="2048" height="1024"/>
+  <tile id="320">
+   <animation>
+    <frame tileid="320" duration="500"/>
+    <frame tileid="322" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="352">
+   <animation>
+    <frame tileid="352" duration="500"/>
+    <frame tileid="354" duration="500"/>
+   </animation>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="10" height="10">
+  <data encoding="csv">
+1,2,2,2,2,2,2,2,2,3,
+33,34,11,12,12,13,34,34,34,35,
+33,34,43,44,44,45,34,34,34,35,
+33,34,75,76,76,77,34,34,34,35,
+33,34,34,34,34,34,34,34,34,35,
+33,34,34,34,34,34,34,34,34,35,
+33,34,34,34,34,34,34,34,34,35,
+33,34,34,34,34,34,34,34,34,35,
+33,34,34,34,34,34,34,34,34,35,
+65,66,66,66,66,66,66,66,66,67
+</data>
+ </layer>
+ <layer name="Tile Layer 2" width="10" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,
+0,321,0,0,0,0,0,0,0,0,
+0,353,0,0,0,0,0,0,0,321,
+0,0,0,323,0,0,0,0,0,353,
+0,0,0,355,0,0,0,325,0,0,
+0,0,0,0,0,0,0,357,0,0,
+0,0,0,0,0,0,321,0,0,0,
+0,0,325,0,0,0,353,0,0,0,
+0,0,357,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="11" name="barrel" type="barrel" gid="330" x="448" y="128" width="64" height="64"/>
+  <object id="16" name="barrel" type="barrel" gid="330" x="384" y="256" width="64" height="64"/>
+  <object id="18" name="barrel" type="barrel" gid="330" x="512" y="384" width="64" height="64"/>
+  <object id="19" name="barrel" type="barrel" gid="330" x="192" y="448" width="64" height="64"/>
+ </objectgroup>
+</map>
