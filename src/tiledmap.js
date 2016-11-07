@@ -2,13 +2,39 @@
 
 import Sprite from './sprite';
 
+class TiledObject {
+	constructor(layer, objectData) {
+		this.id = objectData.id;
+		this.name = objectData.name;
+		this.type = objectData.type;
+		this.visible = objectData.visible;
+		this.sprite = new Sprite(objectData.width, objectData.height, null);
+		this.sprite.setRotation(objectData.rotation);
+		this.sprite.setPosition(objectData.x, objectData.y);
+	}
+}
+
 export default class TiledMap {
 	constructor(graphics, content) {
 		this.graphics = graphics;
 		this.content = content;
 		this.sprite = new Sprite(0, 0, null);
 		this.textures = {};
+		this.objects = {};
 		this.animationTime = 0;
+		this.createObjects();
+	}
+	createObjects() {
+		for (let layer of this.content.layers) {
+			if (layer.type === 'objectgroup') {
+				this.createObjectsFromLayer(layer);
+			}
+		}
+	}
+	createObjectsFromLayer(layer) {
+		for (let objectData of layer.objects) {
+			this.objects[objectData.id] = new TiledObject(layer, objectData);
+		}
 	}
 	update(deltaTime) {
 		this.animationTime += deltaTime * 1000;
@@ -17,6 +43,8 @@ export default class TiledMap {
 		for (let layer of this.content.layers) {
 			if (layer.type === 'tilelayer') {
 				this.drawTileLayer(layer);
+			} else if (layer.type === 'objectgroup') {
+				this.drawObjectGroup(layer);
 			}
 		}
 	}
@@ -57,6 +85,36 @@ export default class TiledMap {
 				);
 
 				this.graphics.draw(this.sprite);
+			}
+		}
+	}
+	drawObjectGroup(layer) {
+		if (!layer.visible) return;
+		for (let objectData of layer.objects) {
+			this.drawObject(this.objects[objectData.id], objectData);
+		}
+	}
+	drawObject(object, objectData) {
+		if (!object || objectData.gid === 0 || !object.visible) return;
+		let gid = objectData.gid;
+		for (let tileset of this.content.tilesets) {
+			if (gid >= tileset.firstgid && gid <= tileset.firstgid + tileset.tilecount) {
+				object.sprite.texture = this.textures[tileset.image];
+
+				let tileId = this.getEffectiveTileId(tileset, gid);
+				let tilesetX = tileId % tileset.columns;
+				let tilesetY = Math.floor(tileId / tileset.columns);
+
+				let textureX = tilesetX * tileset.tilewidth;
+				let textureY = tilesetY * tileset.tileheight;
+				object.sprite.setTextureCoordinates(
+					textureX / tileset.imagewidth,
+					textureY / tileset.imageheight,
+					(textureX + tileset.tilewidth) / tileset.imagewidth,
+					(textureY + tileset.tileheight) / tileset.imageheight
+				);
+
+				this.graphics.draw(object.sprite);
 			}
 		}
 	}
