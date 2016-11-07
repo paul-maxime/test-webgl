@@ -12,7 +12,7 @@ var SampleMap = { "height":10,
          "width":10,
          "x":0,
          "y":0
-        }, 
+        },
         {
          "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 321, 0, 0, 0, 0, 0, 0, 0, 0, 0, 353, 0, 0, 0, 0, 0, 0, 0, 321, 0, 0, 0, 323, 0, 0, 0, 0, 0, 353, 0, 0, 0, 355, 0, 0, 0, 325, 0, 0, 0, 0, 0, 0, 0, 0, 0, 357, 0, 0, 0, 0, 0, 0, 0, 0, 321, 0, 0, 0, 0, 0, 325, 0, 0, 0, 353, 0, 0, 0, 0, 0, 357, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":10,
@@ -23,36 +23,36 @@ var SampleMap = { "height":10,
          "width":10,
          "x":0,
          "y":0
-        }, 
+        },
         {
          "draworder":"topdown",
-         "height":10,
+         "height":0,
          "name":"Object Layer 1",
          "objects":[
                 {
-                 "gid":330,
-                 "height":64,
+                 "gid":1073742154,
+                 "height":32,
                  "id":11,
                  "name":"barrel",
-                 "rotation":0,
+                 "rotation":60,
                  "type":"barrel",
                  "visible":true,
                  "width":64,
                  "x":448,
                  "y":128
-                }, 
+                },
                 {
                  "gid":330,
                  "height":64,
                  "id":16,
                  "name":"barrel",
-                 "rotation":0,
+                 "rotation":-20,
                  "type":"barrel",
                  "visible":true,
                  "width":64,
                  "x":384,
                  "y":256
-                }, 
+                },
                 {
                  "gid":330,
                  "height":64,
@@ -64,23 +64,23 @@ var SampleMap = { "height":10,
                  "width":64,
                  "x":512,
                  "y":384
-                }, 
+                },
                 {
                  "gid":330,
-                 "height":64,
+                 "height":128,
                  "id":19,
                  "name":"barrel",
                  "rotation":0,
                  "type":"barrel",
                  "visible":true,
-                 "width":64,
+                 "width":128,
                  "x":192,
                  "y":448
                 }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":10,
+         "width":0,
          "x":0,
          "y":0
         }],
@@ -108,10 +108,22 @@ var SampleMap = { "height":10,
                         {
                          "duration":500,
                          "tileid":320
-                        }, 
+                        },
                         {
                          "duration":500,
                          "tileid":322
+                        }]
+                },
+             "329":
+                {
+                 "animation":[
+                        {
+                         "duration":400,
+                         "tileid":329
+                        },
+                        {
+                         "duration":100,
+                         "tileid":393
                         }]
                 },
              "352":
@@ -120,7 +132,7 @@ var SampleMap = { "height":10,
                         {
                          "duration":500,
                          "tileid":352
-                        }, 
+                        },
                         {
                          "duration":500,
                          "tileid":354

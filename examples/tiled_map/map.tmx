@@ -8,6 +8,13 @@
     <frame tileid="322" duration="500"/>
    </animation>
   </tile>
+  <tile id="329">
+   <objectgroup draworder="index"/>
+   <animation>
+    <frame tileid="329" duration="400"/>
+    <frame tileid="393" duration="100"/>
+   </animation>
+  </tile>
   <tile id="352">
    <animation>
     <frame tileid="352" duration="500"/>
@@ -44,9 +51,9 @@
 </data>
  </layer>
  <objectgroup name="Object Layer 1">
-  <object id="11" name="barrel" type="barrel" gid="330" x="448" y="128" width="64" height="64"/>
-  <object id="16" name="barrel" type="barrel" gid="330" x="384" y="256" width="64" height="64"/>
+  <object id="11" name="barrel" type="barrel" gid="1073742154" x="448" y="128" width="64" height="32" rotation="60"/>
+  <object id="16" name="barrel" type="barrel" gid="330" x="384" y="256" width="64" height="64" rotation="-20"/>
   <object id="18" name="barrel" type="barrel" gid="330" x="512" y="384" width="64" height="64"/>
-  <object id="19" name="barrel" type="barrel" gid="330" x="192" y="448" width="64" height="64"/>
+  <object id="19" name="barrel" type="barrel" gid="330" x="192" y="448" width="128" height="128"/>
  </objectgroup>
 </map>
