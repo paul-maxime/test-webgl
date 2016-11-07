@@ -23,6 +23,11 @@ export default class Sprite extends Transformable {
 		this.areVerticesDirty = true;
 		this.setOrigin(width / 2, height / 2);
 	}
+	setSize(width, height) {
+		this.width = width;
+		this.height = height;
+		this.areVerticesDirty = true;
+	}
 	setTextureCoordinates(startX, startY, endX, endY) {
 		this.textureStartX = startX;
 		this.textureStartY = startY;

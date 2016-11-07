@@ -14,10 +14,6 @@ export default class Transformable {
 		this.origin[0] = 0;
 		this.origin[1] = 0;
 	}
-	setSize(width, height) {
-		this.width = width;
-		this.height = height;
-	}
 	setPosition(x, y) {
 		this.position[0] = x;
 		this.position[1] = y;
