@@ -63,7 +63,8 @@ export default class Graphics {
 		this.canvas = canvas;
 		this.gl = null;
 		try {
-			this.gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+			let options = { alpha: false, premultipliedAlpha: false };
+			this.gl = canvas.getContext('webgl', options) || canvas.getContext('experimental-webgl', options);
 		} catch (e) {
 			this.gl = null;
 		}
