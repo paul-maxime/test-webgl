@@ -9,8 +9,9 @@ class TiledObject {
 		this.type = objectData.type;
 		this.visible = objectData.visible;
 		this.sprite = new Sprite(objectData.width, objectData.height, null);
+		this.sprite.setOrigin(0, objectData.height);
 		this.sprite.setRotation(objectData.rotation);
-		this.sprite.setPosition(objectData.x, objectData.y);
+		this.sprite.setPosition(objectData.x, objectData.y - objectData.height);
 	}
 }
 
