@@ -21,6 +21,7 @@ export default class TiledMap {
 		}
 	}
 	drawTileLayer(layer) {
+		if (!layer.visible) return;
 		this.sprite.setColor(1.0, 1.0, 1.0, layer.opacity);
 		for (let x = 0; x < layer.width; ++x) {
 			for (let y = 0; y < layer.height; ++y) {
