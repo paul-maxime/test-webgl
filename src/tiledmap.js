@@ -2,16 +2,40 @@
 
 import Sprite from './sprite';
 
+const FLIPPED_HORIZONTALLY_FLAG = 0x80000000;
+const FLIPPED_VERTICALLY_FLAG   = 0x40000000;
+const FLIPPED_DIAGONALLY_FLAG   = 0x20000000;
+
 class TiledObject {
 	constructor(layer, objectData) {
 		this.id = objectData.id;
 		this.name = objectData.name;
 		this.type = objectData.type;
 		this.visible = objectData.visible;
+
+		this.gid = objectData.gid & ~(
+			FLIPPED_HORIZONTALLY_FLAG |
+			FLIPPED_VERTICALLY_FLAG |
+			FLIPPED_DIAGONALLY_FLAG
+		);
+
 		this.sprite = new Sprite(objectData.width, objectData.height, null);
 		this.sprite.setOrigin(0, objectData.height);
 		this.sprite.setRotation(objectData.rotation);
 		this.sprite.setPosition(objectData.x, objectData.y - objectData.height);
+
+		let scaleX = 1.0;
+		let scaleY = 1.0;
+		if (objectData.gid & FLIPPED_DIAGONALLY_FLAG) {
+			scaleX = -1.0;
+			scaleY = -1.0;
+		}
+
+		// TODO: Tiled is scaling using a different origin (center)
+		if (objectData.gid & FLIPPED_HORIZONTALLY_FLAG) scaleX *= -1;
+		if (objectData.gid & FLIPPED_VERTICALLY_FLAG) scaleY *= -1;
+
+		this.sprite.setScale(scaleX, scaleY);
 	}
 }
 
@@ -97,7 +121,7 @@ export default class TiledMap {
 	}
 	drawObject(object, objectData) {
 		if (!object || objectData.gid === 0 || !object.visible) return;
-		let gid = objectData.gid;
+		let gid = object.gid;
 		for (let tileset of this.content.tilesets) {
 			if (gid >= tileset.firstgid && gid <= tileset.firstgid + tileset.tilecount) {
 				object.sprite.texture = this.textures[tileset.image];
