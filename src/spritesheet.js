@@ -7,6 +7,7 @@ import Sprite from './sprite';
  * Create an instance of SpriteSheet object.
  * @param {Texture} texture - The name of the sprite.
  * @param {number} width - The width of the texture.
+ * @param {number} height - The height of the texture.
  *
  * @example
  * spritesheet = new Yaje.SpriteSheet(texture, 128, 128);
