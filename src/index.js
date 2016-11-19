@@ -1,7 +1,7 @@
 'use strict';
 
 window.Yaje = {
-	VERSION: '0.4.0'
+	VERSION: '0.5.0'
 }
 
 import BoxCollider from './boxcollider';
