@@ -142,6 +142,9 @@ export default class Graphics {
 		}
 	}
 	draw(sprite) {
+		if (sprite.texture !== this.defaultSpriteBatch.texture) {
+			this.display();
+		}
 		this.defaultSpriteBatch.append(sprite);
 		if (this.defaultSpriteBatch.size === this.defaultSpriteBatch.capacity) {
 			this.display();
