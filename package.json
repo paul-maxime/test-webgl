@@ -1,6 +1,6 @@
 {
   "name": "yaje.js",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Yet another javascript (game) engine.",
   "directories": {
     "example": "examples"
