@@ -26,6 +26,8 @@ gulp.task('default', ['clean'], function() {
 			this.emit('end');
 		})
 		.pipe(source('index.js'))
+		.pipe(rename('yaje.js'))
+		.pipe(gulp.dest('build'))
 		.pipe(streamify(uglify()))
 		.pipe(rename('yaje.min.js'))
 		.pipe(gulp.dest('build'))
