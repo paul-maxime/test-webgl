@@ -1,14 +1,14 @@
 {
   "name": "yaje.js",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Yet another javascript (game) engine.",
   "directories": {
     "example": "examples"
   },
   "scripts": {
-    "build": "node_modules/.bin/gulp",
-    "watch": "node_modules/.bin/gulp watch",
-    "docs": "node_modules/.bin/esdoc -c esdoc.json"
+    "build": "gulp",
+    "watch": "gulp watch",
+    "docs": "esdoc -c esdoc.json"
   },
   "repository": {
     "type": "git",
