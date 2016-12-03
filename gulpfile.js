@@ -9,6 +9,13 @@ var rename = require('gulp-rename')
 var gulp = require('gulp')
 var del = require('del')
 
+var exitStatus = 0;
+process.on('exit', function () {
+	if (exitStatus !== 0) {
+		process.exit(exitStatus);
+	}
+});
+
 var paths = {
 	scripts: ['src/**.js']
 };
@@ -22,6 +29,7 @@ gulp.task('default', ['clean'], function() {
 		.transform('babelify')
 		.bundle()
 		.on('error', function (err) {
+			exitStatus = 1;
 			console.log(err.toString());
 			this.emit('end');
 		})
