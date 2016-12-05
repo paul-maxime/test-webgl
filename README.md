@@ -10,5 +10,6 @@ Yet another Javascript (game) engine.
 npm install
 # Execute gulp to build the project
 npm run build
+# Build the documentation files (if you want to)
+npm run docs
 ```
-
