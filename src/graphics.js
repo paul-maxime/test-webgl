@@ -26,6 +26,15 @@ export default class Graphics {
 		this.whitePixelTexture = null;
 		this.defaultSpriteBatch = null;
 	}
+/**
+ * Initialize graphics basing on a canvas (on html page).
+ * @param {canvas} canvas - The canvas in which the game will be draw.
+ *
+ * @returns {bool} - True if initialize working. Otherway false.
+ *
+ * @example
+ * this.graphics.initialize(document.getElementById('game-canvas'));
+ */
 	initialize(canvas) {
 		if (this.initializeGl(canvas) && this.initializeShaders()) {
 			this.whitePixelTexture = new Texture(this.gl);
@@ -48,6 +57,15 @@ export default class Graphics {
 	clear() {
 		this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
 	}
+/**
+ * Create texture from a pic file.
+ * @param {string} src - The source of the pic file.
+ *
+ * @returns {Texture} - The created texture.
+ *
+ * @example
+ * texture = this.graphics.createTexture('sheet.png');
+ */
 	createTexture(src) {
 		var texture = new Texture(this.gl);
 		var image = new Image();
