@@ -8,6 +8,7 @@
   "scripts": {
     "build": "gulp",
     "watch": "gulp watch",
+    "test": "eslint src/*.js",
     "docs": "esdoc -c esdoc.json"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "browserify": "^13.1.1",
     "del": "^2.2.2",
     "esdoc": "^0.4.8",
+    "eslint": "^3.12.1",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-streamify": "^1.0.2",
