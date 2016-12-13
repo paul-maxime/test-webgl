@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-import Transformable from './transformable';
+import Transformable from "./transformable";
 
 export default class Camera extends Transformable {
 	constructor() {

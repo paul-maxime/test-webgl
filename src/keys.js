@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-var Keys = Object.freeze({
+export default Object.freeze({
 	BACKSPACE   : 8,
 	TAB         : 9,
 	ENTER       : 13,
@@ -46,5 +46,3 @@ var Keys = Object.freeze({
 	Y           : 89,
 	Z           : 90
 });
-
-module.exports = Keys;

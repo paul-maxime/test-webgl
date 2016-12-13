@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-import Sprite from './sprite';
+import Sprite from "./sprite";
 
 const FLIPPED_HORIZONTALLY_FLAG = 0x80000000;
 const FLIPPED_VERTICALLY_FLAG   = 0x40000000;
@@ -51,7 +51,7 @@ export default class TiledMap {
 	}
 	createObjects() {
 		for (let layer of this.content.layers) {
-			if (layer.type === 'objectgroup') {
+			if (layer.type === "objectgroup") {
 				this.createObjectsFromLayer(layer);
 			}
 		}
@@ -66,9 +66,9 @@ export default class TiledMap {
 	}
 	draw() {
 		for (let layer of this.content.layers) {
-			if (layer.type === 'tilelayer') {
+			if (layer.type === "tilelayer") {
 				this.drawTileLayer(layer);
-			} else if (layer.type === 'objectgroup') {
+			} else if (layer.type === "objectgroup") {
 				this.drawObjectGroup(layer);
 			}
 		}

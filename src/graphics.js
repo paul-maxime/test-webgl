@@ -1,10 +1,9 @@
-'use strict';
+"use strict";
 
-import Buffer from './glbuffer';
-import Camera from './camera';
-import Sprite from './sprite';
-import Texture from './texture';
-import SpriteBatch from './spritebatch';
+import Buffer from "./glbuffer";
+import Camera from "./camera";
+import Texture from "./texture";
+import SpriteBatch from "./spritebatch";
 
 export default class Graphics {
 	constructor () {
@@ -33,7 +32,7 @@ export default class Graphics {
  * @returns {bool} - True if initialize working. Otherway false.
  *
  * @example
- * this.graphics.initialize(document.getElementById('game-canvas'));
+ * this.graphics.initialize(document.getElementById("game-canvas"));
  */
 	initialize(canvas) {
 		if (this.initializeGl(canvas) && this.initializeShaders()) {
@@ -64,7 +63,7 @@ export default class Graphics {
  * @returns {Texture} - The created texture.
  *
  * @example
- * texture = this.graphics.createTexture('sheet.png');
+ * texture = this.graphics.createTexture("sheet.png");
  */
 	createTexture(src) {
 		var texture = new Texture(this.gl);
@@ -82,38 +81,38 @@ export default class Graphics {
 		this.gl = null;
 		try {
 			let options = { alpha: false, premultipliedAlpha: false };
-			this.gl = canvas.getContext('webgl', options) || canvas.getContext('experimental-webgl', options);
+			this.gl = canvas.getContext("webgl", options) || canvas.getContext("experimental-webgl", options);
 		} catch (e) {
 			this.gl = null;
 		}
 
 		if (!this.gl) {
-			console.error('Unable to initialize WebGL. Your browser may not support it.');
+			console.error("Unable to initialize WebGL. Your browser may not support it.");
 			return false;
 		}
 		return true;
 	}
 	initializeShaders() {
 		var vertexShader = this.createShader(this.gl.VERTEX_SHADER,
-			'attribute vec3 a_vertexPosition;' +
-			'attribute vec4 a_vertexColor;' +
-			'attribute vec2 a_textureCoordinates;' +
-			'uniform mat4 u_viewProjectionMatrix;' +
-			'varying highp vec2 v_textureCoordinates;' +
-			'varying lowp vec4 v_color;' +
-			'void main(void) {' +
-			'	gl_Position = u_viewProjectionMatrix * vec4(a_vertexPosition, 1.0);' +
-			'	v_color = a_vertexColor;' +
-			'	v_textureCoordinates = a_textureCoordinates;' +
-			'}'
+			"attribute vec3 a_vertexPosition;" +
+			"attribute vec4 a_vertexColor;" +
+			"attribute vec2 a_textureCoordinates;" +
+			"uniform mat4 u_viewProjectionMatrix;" +
+			"varying highp vec2 v_textureCoordinates;" +
+			"varying lowp vec4 v_color;" +
+			"void main(void) {" +
+			"	gl_Position = u_viewProjectionMatrix * vec4(a_vertexPosition, 1.0);" +
+			"	v_color = a_vertexColor;" +
+			"	v_textureCoordinates = a_textureCoordinates;" +
+			"}"
 		);
 		var fragmentShader = this.createShader(this.gl.FRAGMENT_SHADER,
-			'varying highp vec2 v_textureCoordinates;' +
-			'varying lowp vec4 v_color;' +
-			'uniform sampler2D u_sampler;' +
-			'void main(void) {' +
-			'	gl_FragColor = texture2D(u_sampler, v_textureCoordinates) * v_color;' +
-			'}'
+			"varying highp vec2 v_textureCoordinates;" +
+			"varying lowp vec4 v_color;" +
+			"uniform sampler2D u_sampler;" +
+			"void main(void) {" +
+			"	gl_FragColor = texture2D(u_sampler, v_textureCoordinates) * v_color;" +
+			"}"
 		);
 
 		this.shaderProgram = this.gl.createProgram();
@@ -122,22 +121,22 @@ export default class Graphics {
 		this.gl.linkProgram(this.shaderProgram);
 
 		if (!this.gl.getProgramParameter(this.shaderProgram, this.gl.LINK_STATUS)) {
-			console.error('Unable to initialize the shader program: ' + gl.getProgramInfoLog(shader));
+			console.error("Unable to initialize the shader program: " + this.gl.getProgramInfoLog(this.shaderProgram));
 			return false;
 		}
 
 		this.gl.useProgram(this.shaderProgram);
 
-		this.vertexPositionAttribute = this.gl.getAttribLocation(this.shaderProgram, 'a_vertexPosition');
+		this.vertexPositionAttribute = this.gl.getAttribLocation(this.shaderProgram, "a_vertexPosition");
 		this.gl.enableVertexAttribArray(this.vertexPositionAttribute);
 
-		this.vertexColorAttribute = this.gl.getAttribLocation(this.shaderProgram, 'a_vertexColor');
+		this.vertexColorAttribute = this.gl.getAttribLocation(this.shaderProgram, "a_vertexColor");
 		this.gl.enableVertexAttribArray(this.vertexColorAttribute);
 
-		this.textureCoordinatesAttribute = this.gl.getAttribLocation(this.shaderProgram, 'a_textureCoordinates');
+		this.textureCoordinatesAttribute = this.gl.getAttribLocation(this.shaderProgram, "a_textureCoordinates");
 		this.gl.enableVertexAttribArray(this.textureCoordinatesAttribute);
 
-		this.viewProjectionMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, 'u_viewProjectionMatrix');
+		this.viewProjectionMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, "u_viewProjectionMatrix");
 
 		return true;
 	}
@@ -146,7 +145,7 @@ export default class Graphics {
 		this.gl.shaderSource(shader, source);
 		this.gl.compileShader(shader);
 		if (!this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS)) {
-			console.error('An error occurred compiling the shaders: ' + this.gl.getShaderInfoLog(shader));
+			console.error("An error occurred compiling the shaders: " + this.gl.getShaderInfoLog(shader));
 			return null;
 		}
 		return shader;

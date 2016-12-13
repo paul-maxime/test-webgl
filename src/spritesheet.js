@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-import Sprite from './sprite';
+import Sprite from "./sprite";
 
 /**
  * @constructor
@@ -28,7 +28,7 @@ export default class SpriteSheet {
  * @param {number} height - The height of the sprite.
  *
  * @example
- * SpriteSheet.register('mySprite',0,0,32,32);
+ * SpriteSheet.register("mySprite",0,0,32,32);
  */
 	register(name, x, y, width, height) {
 		this.spriteCoordinates[name] = {
@@ -63,7 +63,7 @@ export default class SpriteSheet {
  * @returns {Sprite} Returns the sprite of the spriteName.
  *
  * @example
- * sprite = spritesheet.createSprite('spriteName');
+ * sprite = spritesheet.createSprite("spriteName");
  */
 	createSprite(name) {
 		let info = this.spriteCoordinates[name];
@@ -77,7 +77,7 @@ export default class SpriteSheet {
  * @param {string} name - The name of the sprite.
  *
  * @example
- * spritesheet.setSpriteTexture(sprite, 'spriteName');
+ * spritesheet.setSpriteTexture(sprite, "spriteName");
  */
 	setSpriteTexture(sprite, name) {
 		let info = this.spriteCoordinates[name];

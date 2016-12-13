@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-import Sound from './sound';
+import Sound from "./sound";
 
 export default class SoundPlayer {
 	constructor() {

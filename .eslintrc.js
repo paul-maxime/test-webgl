@@ -23,6 +23,19 @@ module.exports = {
         "semi": [
             "error",
             "always"
+        ],
+        "no-console": [
+            "off"
         ]
+    },
+    "globals": {
+        "mat2": false,
+        "mat2d": false,
+        "mat3": false,
+        "mat4": false,
+        "quat": false,
+        "vec2": false,
+        "vec3": false,
+        "vec4": false
     }
 };

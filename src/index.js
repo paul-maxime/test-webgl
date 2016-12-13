@@ -1,26 +1,26 @@
-'use strict';
+"use strict";
 
 window.Yaje = {
-	VERSION: '0.5.1'
-}
+	VERSION: "0.5.1"
+};
 
-import BoxCollider from './boxcollider';
-import Buffer from './glbuffer';
-import Camera from './camera';
-import Clock from './clock';
-import Graphics from './graphics';
-import Input from './input';
-import Keys from './keys';
-import MusicPlayer from './musicplayer';
-import Random from './random';
-import SoundPlayer from './soundplayer';
-import Sprite from './sprite';
-import SpriteBatch from './spritebatch';
-import SpriteSheet from './spritesheet';
-import Storage from './storage';
-import Texture from './texture';
-import TiledMap from './tiledmap';
-import Transformable from './transformable';
+import BoxCollider from "./boxcollider";
+import Buffer from "./glbuffer";
+import Camera from "./camera";
+import Clock from "./clock";
+import Graphics from "./graphics";
+import Input from "./input";
+import Keys from "./keys";
+import MusicPlayer from "./musicplayer";
+import Random from "./random";
+import SoundPlayer from "./soundplayer";
+import Sprite from "./sprite";
+import SpriteBatch from "./spritebatch";
+import SpriteSheet from "./spritesheet";
+import Storage from "./storage";
+import Texture from "./texture";
+import TiledMap from "./tiledmap";
+import Transformable from "./transformable";
 
 window.Yaje.BoxCollider = BoxCollider;
 window.Yaje.Buffer = Buffer;
