@@ -1,6 +1,16 @@
 "use strict";
 
+/**
+ * Encapsulates a WebGL texture.
+ *
+ * @class
+ * @memberof Yaje
+ */
 export default class Texture {
+	/**
+	 * Creates the internal WebGL texture.
+	 * @param {WebGLRenderingContext} gl - Current WebGL context.
+	 */
 	constructor(gl) {
 		this.gl = gl;
 		this.texture = this.gl.createTexture();
@@ -8,12 +18,18 @@ export default class Texture {
 		this.width = 0;
 		this.height = 0;
 	}
+	/**
+	 * Binds the texture if its different than the current texture.
+	 */
 	bind() {
 		if (this.gl.boundTexture !== this) {
 			this.gl.boundTexture = this;
 			this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture);
 		}
 	}
+	/**
+	 * Creates a 1x1 texture containing a single white pixel (#FFFFFFFF).
+	 */
 	loadWhitePixel() {
 		this.bind();
 		this.initialized = true;
@@ -25,6 +41,10 @@ export default class Texture {
 		this.width = 1;
 		this.height = 1;
 	}
+	/**
+	 * Loads the specified image into the internal texture.
+	 * @param {Image} image - Image to load.
+	 */
 	loadFromImage(image) {
 		this.bind();
 		this.initialized = true;
