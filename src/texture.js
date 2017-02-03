@@ -15,7 +15,15 @@ export default class Texture {
 		this.gl = gl;
 		this.texture = this.gl.createTexture();
 		this.initialized = false;
+		/**
+		 * Width of the texture, in pixels.
+		 * @member {number}
+		 */
 		this.width = 0;
+		/**
+		 * Height of the texture, in pixels.
+		 * @member {number}
+		 */
 		this.height = 0;
 	}
 	/**
